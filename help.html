@@ -1,0 +1,1415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help &amp; FAQ - Resume Guide</title>
+<style>
+  /* ----------------------------------------------------------------
+     Theme is controlled 100% by the in-app theme toggle.
+     legal_doc_screen.dart injects either class="light" or
+     class="dark" onto the <html> tag before loading this file,
+     so the page always matches what the app shows, independent
+     of the phone's system dark-mode setting.
+     ---------------------------------------------------------------- */
+  :root, html.light{
+    --ink:#0e1726; --body:#3a4358; --muted:#6b7587;
+    --paper:#ffffff; --accent:#2563eb; --soft:#f2f6fc;
+    --line:#e4e8ef; --softline:#eef1f6;
+    --card:#ffffff; --chip-border:#d6e4ff; --chip-hover:#e4eeff;
+    --mark:#fff3bf;
+    --success:#22c55e; --warning:#f59e0b; --danger:#ef4444;
+  }
+  html.dark{
+    --ink:#f3f6fc; --body:#c8cfdd; --muted:#8b94a8;
+    --paper:#0f141d; --accent:#7aa7ff; --soft:#1a2332;
+    --line:#27303f; --softline:#1c2433;
+    --card:#161c27; --chip-border:#2d3a52; --chip-hover:#22304a;
+    --mark:#4d4216;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--paper);
+    color:var(--body);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
+                "Helvetica Neue",Arial,sans-serif;
+    font-size:15.5px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  main{ max-width:680px; margin:0 auto; padding:28px 20px 56px; }
+
+  a.back{
+    color:var(--accent); text-decoration:none; font-size:14px;
+    display:inline-block; margin-bottom:18px;
+  }
+  a.back:hover{ text-decoration:underline; }
+  /* Hero */
+  .hero h1{
+    font-size:26px; font-weight:800; color:var(--ink);
+    margin:0 0 4px; letter-spacing:-0.01em;
+  }
+  .hero .sub{ color:var(--muted); font-size:14px; margin:0 0 18px; }
+
+  /* Sticky search */
+  .search-wrap{
+    position:sticky; top:0; z-index:10;
+    background:var(--paper);
+    padding:8px 0 14px;
+    border-bottom:1px solid var(--line);
+  }
+  .search{
+    width:100%;
+    padding:13px 14px 13px 40px;
+    font-size:15px; color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:11px;
+    background:var(--card)
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%236b7587" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>')
+      no-repeat 13px center;
+    outline:none;
+    transition: border-color .12s ease, box-shadow .12s ease;
+  }
+  .search:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(37,99,235,0.18);
+  }
+  .no-results{
+    display:none; padding:18px 14px; color:var(--muted); font-size:14px;
+    text-align:center; border:1px dashed var(--line); border-radius:10px;
+    margin-top:12px;
+  }
+  .no-results.show{ display:block; }
+
+  /* Quick jump chips, visible only when search is empty */
+  .chips{
+    display:flex; flex-wrap:wrap; gap:6px;
+    margin:14px 0 6px;
+  }
+  .chips a{
+    display:inline-block;
+    padding:6px 12px;
+    background:var(--soft); color:var(--accent);
+    border:1px solid var(--chip-border);
+    border-radius:999px;
+    font-size:12px; font-weight:600;
+    text-decoration:none;
+    transition: all .12s ease;
+  }
+  .chips a:hover{ background:var(--chip-hover); }
+  .chips.hidden{ display:none; }
+
+  /* ---------------  Section wrapper (outer dropdown)  --------------- */
+  details.section{
+    margin:14px 0 0;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--card);
+    overflow:hidden;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    scroll-margin-top:80px;  /* sticky search doesn't cover it */
+  }
+  details.section[open]{
+    border-color:var(--chip-border);
+    box-shadow:0 1px 0 rgba(37,99,235,0.05);
+  }
+  details.section > summary{
+    list-style:none; cursor:pointer;
+    padding:16px 18px;
+    font-weight:800; color:var(--ink);
+    font-size:15.5px; letter-spacing:-0.005em;
+    display:flex; align-items:center; gap:12px;
+  }
+  details.section > summary::-webkit-details-marker{ display:none; }
+  details.section > summary .ico{
+    width:30px; height:30px;
+    display:inline-flex; align-items:center; justify-content:center;
+    border-radius:8px;
+    background:var(--soft); color:var(--accent);
+    font-size:15px;
+  }
+  details.section > summary .label{
+    flex:1; min-width:0;
+  }
+  details.section > summary .count{
+    font-size:12px; font-weight:700; color:var(--muted);
+    background:var(--soft);
+    padding:3px 8px; border-radius:999px;
+  }
+  details.section > summary::after{
+    content:""; flex-shrink:0;
+    width:18px; height:18px;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%236b7587" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat:no-repeat; background-position:center;
+    transition: transform .15s ease;
+  }
+  details.section[open] > summary::after{ transform: rotate(180deg); }
+  .section-body{
+    padding:4px 14px 14px;
+  }
+
+  /* ---------------  FAQ item (inner accordion)  --------------- */
+  details.faq{
+    border:1px solid var(--softline);
+    border-radius:10px;
+    background:var(--card);
+    margin:8px 0 0;
+    overflow:hidden;
+    transition: border-color .15s ease;
+  }
+  details.faq[open]{ border-color:var(--chip-border); }
+  details.faq > summary{
+    list-style:none; cursor:pointer;
+    padding:12px 14px;
+    font-weight:600; color:var(--ink);
+    font-size:14.5px; line-height:1.4;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+  }
+  details.faq > summary::-webkit-details-marker{ display:none; }
+  details.faq > summary::after{
+    content:""; flex-shrink:0;
+    width:16px; height:16px;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%236b7587" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat:no-repeat; background-position:center;
+    transition: transform .15s ease;
+  }
+  details.faq[open] > summary::after{ transform: rotate(180deg); }
+
+  .answer{
+    padding:0 14px 14px;
+    color:var(--body);
+    font-size:14px;
+    line-height:1.6;
+  }
+  .answer p{ margin:0 0 10px; }
+  .answer ul, .answer ol{ margin:6px 0 10px; padding-left:22px; }
+  .answer li{ margin:4px 0; }
+  .answer a{ color:var(--accent); text-decoration:none; }
+  .answer a:hover{ text-decoration:underline; }
+  .answer code{
+    background:var(--soft);
+    color:var(--ink);
+    padding:1px 6px; border-radius:4px;
+    font-size:13px; font-family:ui-monospace,Menlo,monospace;
+  }
+  .answer strong{ color:var(--ink); }
+
+  /* Highlight match in summary while searching */
+  mark{
+    background:var(--mark); color:var(--ink);
+    padding:0 2px; border-radius:2px;
+  }
+
+  /* Footer card */
+  .footer{
+    margin-top:28px; padding:16px 18px;
+    background:var(--soft);
+    border:1px solid var(--chip-border);
+    border-radius:12px;
+    font-size:13.5px; color:var(--body);
+  }
+  .footer strong{ color:var(--ink); }
+  .footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
+  .footer a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">&larr; Back</a>
+
+<div class="hero">
+  <h1>Help &amp; FAQ</h1>
+  <p class="sub">Tap a category to expand it, or search to jump straight to an answer. Updated July 15, 2026.</p>
+</div>
+
+<div class="search-wrap">
+  <input
+    type="search"
+    class="search"
+    id="q"
+    placeholder="Search the help center…"
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+  />
+  <div class="no-results" id="noResults">No matches. Try a different word.</div>
+</div>
+
+<div class="chips" id="chips">
+  <a href="#start">Getting started</a>
+  <a href="#account">Account</a>
+  <a href="#credits">Credits</a>
+  <a href="#build">Building resumes</a>
+  <a href="#optimize-history">Optimize &amp; scores</a>
+  <a href="#templates">Templates</a>
+  <a href="#letters">Cover letters</a>
+  <a href="#interview">Mock Interview</a>
+  <a href="#toolkit">Career Toolkit</a>
+  <a href="#jobs">Job descriptions</a>
+  <a href="#saved">Saved items &amp; bin</a>
+  <a href="#notify">Notifications</a>
+  <a href="#hr">Screen &amp; Interview</a>
+  <a href="#export">Download &amp; share</a>
+  <a href="#appearance">Appearance</a>
+  <a href="#privacy">Privacy</a>
+  <a href="#trouble">Troubleshooting</a>
+</div>
+
+<!-- ------------------- GETTING STARTED ------------------- -->
+<details class="section" id="start" open>
+  <summary>
+    <span class="ico">🚀</span>
+    <span class="label">Getting started</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq" open>
+      <summary>What is Resume Guide?</summary>
+      <div class="answer">
+        <p>Resume Guide is a phone-first app for building, tailoring, and sharing professional resumes and cover letters. It also includes practice tools (the Mock Interview Coach and the Career Toolkit) and a full recruiting workspace called <strong>Screen &amp; Interview</strong>, so recruiters and hiring managers can screen candidates, run a hiring pipeline, and prepare interviews from the same app.</p>
+        <p>Everything works directly on your phone: no separate desktop install and no exports required. When you do need a file, you can download polished PDF or Word documents to submit or print.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What is on each tab?</summary>
+      <div class="answer">
+        <ul>
+          <li><strong>Home</strong>: your dashboard, with live counters and six action cards (Create Resume from Scratch, Optimize for a Job, Screen &amp; Interview Assistant, Create Cover Letter, Enhance Your Existing Resume, Career Toolkit).</li>
+          <li><strong>Resumes</strong>: every resume you have created, optimized, or uploaded.</li>
+          <li><strong>Letters</strong>: your saved cover letters.</li>
+          <li><strong>Templates</strong>: the template gallery, including favorites and premium designs.</li>
+          <li><strong>More</strong>: account details, plans and pricing, saved job descriptions, past match results, interview sessions, the Recycle Bin, your Career Toolkit history, appearance settings, help, legal, and sign out.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I build my first resume?</summary>
+      <div class="answer">
+        <ol>
+          <li>On the Home screen, tap <strong>Create Resume from Scratch</strong>.</li>
+          <li>Work through the six guided steps: name and contact, target job and tone, work history, skills, education and certifications, projects and achievements. Only a few fields are required, and you can edit everything later.</li>
+          <li>Tap <strong>Finish</strong> on the last step. Generation usually takes 15 to 30 seconds, then you land on the resume preview showing your first complete draft.</li>
+        </ol>
+        <p>From the preview you can swipe between templates, tap Edit to change any section, run Optimize for a specific job, or download the resume.</p>
+        <p>Tip: even simple input like "IT" or "helped customers" works. Resume Guide expands short phrases into polished, professional bullet points.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I import an existing resume?</summary>
+      <div class="answer">
+        <p>Yes. Tap <strong>Enhance Your Existing Resume</strong> on the Home screen and upload a PDF, DOCX, or TXT file up to 5 MB. Resume Guide reads the text, rewrites it with stronger, clearer wording, and saves the result to My Resumes where you can edit and download it.</p>
+        <p>Enhancing uses <strong>1 resume credit</strong>, and the credit is only charged after your resume has been successfully enhanced. Simply uploading a file (for example as the starting point for Optimize or a cover letter) is free; credits are only spent when you generate something.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Is there a tour of the app?</summary>
+      <div class="answer">
+        <p>Yes. A 5-step Quick Tour runs automatically the first time you open the app with a new account, and a short walkthrough opens the first time you use Create Resume. You can replay both any time from <strong>More &rarr; Help</strong>: "Replay the Quick Tour" and "Replay the Create Resume tutorial." The Screen &amp; Interview workspace has its own welcome tour, replayable from the workspace's More tab.</p>
+        <p>After an update, a "What's new" sheet appears once to show what changed in that version.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- ACCOUNT ------------------- -->
+<details class="section" id="account">
+  <summary>
+    <span class="ico">👤</span>
+    <span class="label">Account &amp; sign-in</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>Do I have to verify my email?</summary>
+      <div class="answer">
+        <p>Yes, if you signed up with an email address and password. We send a verification link, and the app checks automatically every few seconds until you have tapped it. Google sign-ins are already verified and skip this step.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>I'm not getting the verification email.</summary>
+      <div class="answer">
+        <ul>
+          <li>It can take a minute or two. Check your spam or junk folder.</li>
+          <li>On the verification screen, tap <strong>Resend verification email</strong>.</li>
+          <li>Make sure the email you signed up with is spelled correctly.</li>
+          <li>If you signed up with Google, you don't need to verify. Sign in with the Google button.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>I forgot my password.</summary>
+      <div class="answer">
+        <p>On the sign-in screen, enter your email and tap <strong>Forgot password?</strong>. We'll send a reset link to your inbox. This is also the way to change your password if you know the old one but want a new one.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Google sign-in won't work.</summary>
+      <div class="answer">
+        <ul>
+          <li>Make sure you're signed in to a Google account on the device (Settings &rarr; Accounts).</li>
+          <li>Try the email/password flow as an alternative.</li>
+          <li>Update Google Play services from the Play Store.</li>
+          <li>Restart the phone and retry.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I change my profile photo?</summary>
+      <div class="answer">
+        <p>Tap your profile picture at the top right of the Home screen, then tap the small camera icon next to your photo. Choose a photo from your gallery, or remove it to fall back to your Google photo or your initial.</p>
+        <p>A custom photo is stored on your device only. It is not uploaded to our servers and won't follow you to a different phone.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I change the email on my account?</summary>
+      <div class="answer">
+        <p>Not from inside the app yet. If you need to move your account to a different email address, contact <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a> and we'll help.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I delete my account?</summary>
+      <div class="answer">
+        <p>Go to <strong>More &rarr; Account &rarr; Delete my account</strong>. You'll re-enter your password (or sign in with Google once more) to confirm it's really you, then confirm the deletion.</p>
+        <p>Deletion is immediate and permanent: your profile, every resume, cover letter, and saved job description, Screen &amp; Interview candidates, favorites, owned premium templates, remaining credits, and purchase history are all removed. This cannot be undone, and unused credits are not refunded.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- CREDITS ------------------- -->
+<details class="section" id="credits">
+  <summary>
+    <span class="ico">💳</span>
+    <span class="label">Credits &amp; pricing</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How do credits work?</summary>
+      <div class="answer">
+        <p>Resume Guide is pay-as-you-go. Each credit unlocks one action:</p>
+        <ul>
+          <li><strong>Resume credit</strong>: create a resume from scratch, enhance an uploaded resume, or run Optimize for a Job.</li>
+          <li><strong>Cover letter credit</strong>: generate one cover letter.</li>
+          <li><strong>Revision credit</strong>: one Resume Assistant / Smart Modify change, or one keyword "Apply" on a match result.</li>
+          <li><strong>Screening credit</strong>: score one candidate in Screen &amp; Interview (the candidate's interview guide is included).</li>
+        </ul>
+        <p>A credit is only consumed when the action succeeds. Failed or interrupted generations don't charge you. Packs are cheaper per credit than singles; see <strong>More &rarr; Plans &amp; Pricing</strong> for the full catalog.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What can I do for free?</summary>
+      <div class="answer">
+        <p>New accounts get <strong>2 free resume previews</strong> from Create Resume from Scratch (lifetime, per account). A preview shows your complete generated resume in the app with a small "Preview" watermark, and you can browse every template with it. Previews can't be downloaded.</p>
+        <p>Also free, always: browsing templates, editing your resume text and design, organizing your lists, saving job descriptions, and the first Mock Interview preview question for each resume + job pair.</p>
+        <p>Cover letters, Optimize, revisions, and candidate screenings always need a credit. Screen &amp; Interview has no free screenings.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What do the packs include and cost?</summary>
+      <div class="answer">
+        <p>Resume packs are one-time purchases. Every resume in a pack includes <strong>1 revision and 1 cover letter</strong>, plus access to all 16 standard templates. Reference USD prices (Google Play shows your local currency at checkout):</p>
+        <ul>
+          <li><strong>Single Resume</strong>: $4.99 for 1 resume.</li>
+          <li><strong>Starter Pack</strong>: $12.99 for 3 resumes.</li>
+          <li><strong>Value Pack</strong>: $19.99 for 5 resumes.</li>
+          <li><strong>Pro Pack</strong>: $32.99 for 10 resumes.</li>
+          <li><strong>Team Pack</strong>: $49.99 for 20 resumes.</li>
+        </ul>
+        <p>Extras: a single <strong>Cover Letter</strong> is $2.99, an <strong>Extra Revision</strong> is $0.99, a <strong>Premium Template</strong> is $0.99 (yours forever), and the <strong>Mock Interview Coach</strong> is $2.99 per unlock. Career Toolkit tools are $0.99 or $1.99 for 3 generations each. Screen &amp; Interview has its own packs; see the Screen &amp; Interview section below.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Do credits expire?</summary>
+      <div class="answer">
+        <p>Pack credits expire <strong>4 months after purchase</strong>. You can see each purchase's own expiry date and remaining credits under <strong>More &rarr; Account details &rarr; Active purchases</strong>, and the app reminds you with a notification 14 days, 3 days, and 1 day before a pack expires.</p>
+        <p>Some things never expire: premium templates you bought, Mock Interview unlocks and question packs, and Career Toolkit generations. The HR Enterprise subscription doesn't bank credits; its monthly screening allowance resets each billing month.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>I bought credits but they didn't show up.</summary>
+      <div class="answer">
+        <p>Google Play purchases usually appear within a few seconds. If they don't:</p>
+        <ul>
+          <li>Pull down to refresh on the Account details screen.</li>
+          <li>Force-close and reopen the app. The app also automatically retries any purchase that hasn't been credited yet.</li>
+          <li>Open <strong>More &rarr; Plans &amp; Pricing</strong> and tap <strong>Restore</strong>.</li>
+          <li>If it's still missing after 5 minutes, send us feedback (More &rarr; Help &rarr; Send feedback) with the date and time of purchase.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>I lost my purchases after reinstalling.</summary>
+      <div class="answer">
+        <p>Open <strong>More &rarr; Plans &amp; Pricing</strong> and tap <strong>Restore</strong>. This re-checks every purchase you've made with Google Play and re-grants credits and templates automatically. Make sure you're signed in to the same Resume Guide account and the same Google account that made the original purchase.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do refunds work?</summary>
+      <div class="answer">
+        <p>All payments go through Google Play, and refund requests are handled by Google directly: open the Play Store app &rarr; profile menu &rarr; Payments &amp; subscriptions &rarr; Budget &amp; history &rarr; tap the order &rarr; Request a refund.</p>
+        <p>If Google issues a refund, the matching items are reversed in the app automatically: remaining credits from that purchase are removed, and unlocked items from it (for example a premium template or a Mock Interview pack) are revoked. Credits you already spent can't be restored.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do team credits work in Screen &amp; Interview?</summary>
+      <div class="answer">
+        <p>Screening credits can belong to a team wallet that everyone on the team shares. Team Owners and Admins can buy packs for the team, and you can transfer your own screening credits into the team from <strong>HR Plans &amp; Pricing</strong>. Screening a team candidate always spends the team wallet; if the wallet is empty, the action stops and asks for a top-up rather than silently spending anyone's personal credits. Candidates in your personal workspace spend your personal credits. If a team is deleted, its remaining wallet credits return to the Owner's personal balance.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- BUILDING RESUMES ------------------- -->
+<details class="section" id="build">
+  <summary>
+    <span class="ico">📝</span>
+    <span class="label">Building your resume</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>What's the difference between Create Resume and Optimize for a Job?</summary>
+      <div class="answer">
+        <p><strong>Create Resume from Scratch</strong> walks you through guided questions and drafts a polished resume from your answers. It's great when you're starting fresh.</p>
+        <p><strong>Optimize for a Job</strong> takes an existing resume and rewrites it to match a specific job description: sharper keywords, better wording, and a before/after match score. Each uses 1 resume credit.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Which fields are required in Create Resume?</summary>
+      <div class="answer">
+        <p>Only the essentials: your full name and email (step 1), a target job title (step 2), at least one work history entry with a job title and company (step 3), and at least one skill (step 4). Education, certifications, projects, and achievements are optional. 5 to 10 relevant skills works best.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Will I lose my answers if I leave halfway through?</summary>
+      <div class="answer">
+        <p>No. If you leave Create Resume with unsaved answers, the app asks whether to <strong>Save as draft</strong>. The draft is restored the next time you open Create Resume on the same device. It's cleared once you generate the resume, or if you sign in with a different account.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I edit a resume after generating it?</summary>
+      <div class="answer">
+        <p>Tap <strong>Edit</strong> on any resume preview to open the full editor. You can change every section directly: header and contact details, summary, experience bullets, skills, education, certifications, and projects. Editing is free and uses no credits.</p>
+        <p>The editor autosaves and shows its status at the top ("Saving…", "Unsaved changes", or "Saved" with the time). On the design-focused templates you also get Design tools: 8 accent colors, a choice of heading fonts, a profile photo toggle, and per-section show/hide.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What is the Resume Assistant?</summary>
+      <div class="answer">
+        <p>On the resume preview screen, the Assistant suggests targeted improvements for your specific resume, with one-tap chips like "Strengthen summary," "Quantify achievements," or "Sharpen bullets." You can also type your own request in plain English. Each applied change uses <strong>1 revision credit</strong>.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What is Smart Modify?</summary>
+      <div class="answer">
+        <p>Smart Modify rewrites any part of a resume from a single instruction in plain English. Examples:</p>
+        <ul>
+          <li>"Tighten the summary to two sentences."</li>
+          <li>"Add a bullet about leading a 5-person team."</li>
+          <li>"Remove the Hobbies section."</li>
+          <li>"Use stronger verbs throughout."</li>
+        </ul>
+        <p>Each Smart Modify uses <strong>1 revision credit</strong>. If you ask something that isn't actually an edit (for example a general question), nothing is charged. Every resume from a pack includes 1 revision, and extra revisions are $0.99.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What is preview mode, and how do I unlock a preview?</summary>
+      <div class="answer">
+        <p>Resumes created on the free tier are <strong>previews</strong>: the full resume is generated and shown in the app with a small "Preview" watermark, but it can't be downloaded. New accounts get 2 free previews.</p>
+        <p>To turn a preview into a full resume, open it and tap <strong>Unlock Full</strong> on the preview banner. Unlocking spends 1 resume credit, regenerates that same resume at full quality, removes the watermark, and enables clean PDF/Word downloads. Buying a pack does not automatically convert older previews; the unlock is per resume.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why does Resume Guide sometimes get things wrong?</summary>
+      <div class="answer">
+        <p>Resume Guide's text generation is impressive but imperfect. It occasionally invents facts, mixes up dates, or uses awkward phrasing. Always read every line of generated content before sending it to a real employer.</p>
+        <p>Tap <strong>Report inaccurate Resume Guide output</strong> on any generated screen to flag bad output. We review every report.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- OPTIMIZE & MATCH RESULTS ------------------- -->
+<details class="section" id="optimize-history">
+  <summary>
+    <span class="ico">📊</span>
+    <span class="label">Optimize for a Job &amp; match results</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How do I tailor a resume to a job?</summary>
+      <div class="answer">
+        <ol>
+          <li>On the Home screen, tap <strong>Optimize for a Job</strong>.</li>
+          <li><strong>Step 1</strong>: pick your resume. Paste the text, upload a PDF/DOCX/TXT file (up to 5 MB), or choose one from your library.</li>
+          <li><strong>Step 2</strong>: add the job. Enter the job title and paste the description (at least 50 characters), or pick a saved job description.</li>
+          <li><strong>Step 3</strong>: tap <strong>Start optimization</strong>. Resume Guide scores the original, rewrites it to highlight matching skills and experience, then re-scores the rewrite. It takes about 30 to 60 seconds and uses <strong>1 resume credit</strong>.</li>
+        </ol>
+        <p>The optimized version is saved as a new resume, so your original stays intact. Run Optimize for every role you apply to.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I close the app while it's optimizing?</summary>
+      <div class="answer">
+        <p>Yes. Optimization runs on our servers, so it keeps going even if you leave the screen or close the app. Tap <strong>Run in background</strong> and you'll get a notification when it's ready; the result also appears in <strong>More &rarr; My Optimization Results</strong>. Creating, enhancing, and screening jobs work the same way.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I paste a job posting URL instead of the text?</summary>
+      <div class="answer">
+        <p>You can try, but most big job boards and applicant tracking systems (LinkedIn, Indeed, Glassdoor, ZipRecruiter, Monster, Workday, Taleo, iCIMS, SAP SuccessFactors) block automated reading of their pages. If the URL can't be read, copy the posting text and use <strong>Paste text</strong> instead. Job descriptions can be up to 20,000 characters.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What do the green / orange / red scores mean?</summary>
+      <div class="answer">
+        <p>Match scores use the same color scale everywhere in the app:</p>
+        <ul>
+          <li><strong>Green (75-100), STRONG.</strong> Solid match, likely to reach a human reviewer.</li>
+          <li><strong>Orange (50-74), AVERAGE.</strong> Competitive, but has gaps to close.</li>
+          <li><strong>Red (0-49), NEEDS WORK.</strong> Won't reliably pass ATS screening for this role.</li>
+        </ul>
+        <p>Match scores are estimates. Every employer reads a resume differently, so treat the score as guidance, not a guarantee.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What happens when I tap a keyword chip on the Match Results?</summary>
+      <div class="answer">
+        <p>Tap a chip in "Keywords now matched" or "Still missing" to queue it as a change; each flipped chip gets a small "queued" badge. When you tap <strong>Apply</strong>, the resume is rewritten to incorporate your changes and re-scored against the same job description, and the gauges, breakdown bars, and recommendations refresh with the new numbers.</p>
+        <p>Each Apply uses <strong>1 revision credit</strong>.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Where can I find past Optimize results?</summary>
+      <div class="answer">
+        <ul>
+          <li><strong>More &rarr; My Optimization Results</strong>: a searchable list of every past run, with sorting and a score filter.</li>
+          <li><strong>My Resumes</strong>: open an optimized resume &rarr; menu &rarr; <strong>View match results</strong>.</li>
+          <li><strong>Optimize for a Job</strong>: your past optimizations appear at the top of Step 1.</li>
+        </ul>
+        <p>Deleting a match result does not delete the optimized resume itself, and deleting a job description keeps the score snapshots from past runs.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I print or share my Match Report?</summary>
+      <div class="answer">
+        <p>Yes. On any Match Results screen (live or saved) use <strong>Print report</strong> or <strong>Share report</strong>. Both produce a clean one-page Match Report PDF with the before/after scores, matched and missing keywords, strengths, and recommendations.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why doesn't my score change when I re-optimize the same resume and JD?</summary>
+      <div class="answer">
+        <p>It usually does. Each refinement pass includes the prior score, missing keywords, and gaps so Resume Guide pushes harder than the last attempt. If the new score doesn't beat the prior one and it's below 95, the system automatically retries once with a more aggressive rewrite and keeps whichever attempt scored higher.</p>
+        <p>If a resume is already at 95+ for that JD, additional rewrites may only produce small changes. That's expected.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- TEMPLATES ------------------- -->
+<details class="section" id="templates">
+  <summary>
+    <span class="ico">🎨</span>
+    <span class="label">Templates</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>What templates are available?</summary>
+      <div class="answer">
+        <p>Resume Guide includes <strong>19 templates</strong>: 16 standard designs plus 3 premium designs (Bennett, Beacon, and Ember, $0.99 each). They're organized into four styles: <strong>Professional</strong>, <strong>Classic</strong>, <strong>Modern</strong>, and <strong>Minimal</strong>. Switching templates never changes your content, only the visual design.</p>
+        <p>Use the tabs in the Templates gallery (All / Free / Paid / Buy / Favorites) and the style filters to browse, and tap the star on any template to add it to your Favorites.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I switch templates on an existing resume?</summary>
+      <div class="answer">
+        <p>Open the resume and swipe left or right on the preview to flip through your enabled templates. Tap <strong>Browse Templates</strong> in the preview menu to choose which templates are in that resume's swipe deck (up to 4 at a time). Switching is free and unlimited.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I buy a premium template?</summary>
+      <div class="answer">
+        <p>Open the Templates tab, tap <strong>Buy</strong> at the top, pick the template you want, and confirm the $0.99 purchase. Purchased templates are unlocked on your account permanently; they never expire, and Restore purchases brings them back on a new phone.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Which templates can download as Word files?</summary>
+      <div class="answer">
+        <p>The single-column <strong>Minimal</strong> templates (Lumen, Quill, Marlow, and Plume) export as both PDF and Word (.docx). The visually-rich designs are PDF-only, because Word can't reproduce their layouts exactly.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- COVER LETTERS ------------------- -->
+<details class="section" id="letters">
+  <summary>
+    <span class="ico">✉️</span>
+    <span class="label">Cover letters</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How do I write a cover letter?</summary>
+      <div class="answer">
+        <ol>
+          <li>Tap <strong>Create Cover Letter</strong> on the Home screen.</li>
+          <li><strong>Resume</strong>: pick one from your library, upload a PDF/DOCX/TXT file (up to 5 MB), or paste the text. Importing here is free.</li>
+          <li><strong>Job</strong>: pick a saved job description, paste one (job title required, at least 50 characters), or upload a file.</li>
+          <li><strong>Confirm</strong>: review the pairing and your credit balance, then tap <strong>Generate cover letter</strong>. It usually takes 10 to 20 seconds and uses <strong>1 cover-letter credit</strong>.</li>
+        </ol>
+        <p>The finished letter is saved to the <strong>Letters</strong> tab, where you can view it, copy the text, or share it.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Are cover letters free?</summary>
+      <div class="answer">
+        <p>No, every generated cover letter uses 1 cover-letter credit. Each resume in a resume pack includes one cover letter, and you can buy a standalone cover letter for $2.99 right from the Confirm step if you're out.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I get my cover letter out of the app?</summary>
+      <div class="answer">
+        <p>Open the letter and use <strong>Copy</strong> to put the full text on your clipboard (ready to paste into an email or application form) or <strong>Share</strong> to send the text to any app. Cover letters are delivered as text rather than as PDF files, since most applications ask you to paste them.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I rename or organize my letters?</summary>
+      <div class="answer">
+        <p>Yes. On the Letters tab you can search, sort (newest, oldest, or by name), and long-press any letter to rename it. Deleting a letter moves it to the Recycle Bin for 30 days.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- MOCK INTERVIEW ------------------- -->
+<details class="section" id="interview">
+  <summary>
+    <span class="ico">🎤</span>
+    <span class="label">Mock Interview Coach</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>What is the Mock Interview Coach?</summary>
+      <div class="answer">
+        <p>A private, scored interview practice session tailored to one specific resume + job description pair. Resume Guide writes questions that fit your background and the role, you answer them in your own words, and every answer is scored with feedback: strengths, gaps, and what a stronger answer would cover.</p>
+        <p>You'll find the <strong>Practice this interview</strong> card on any Optimize result screen, and a shortcut after generating a cover letter. Past sessions live in <strong>More &rarr; My Interview Sessions</strong>.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What's the free preview question?</summary>
+      <div class="answer">
+        <p>Before paying, tap <strong>Try free question</strong> to see one sample interview question for that exact role, plus what a strong answer covers. You get one free preview per resume + job pair; after that, unlock the full coach for $2.99.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How does pricing work? ($2.99 per pack)</summary>
+      <div class="answer">
+        <p>One unlock costs <strong>$2.99</strong> and is tied to a specific resume + job description pair. Each unlock gives you:</p>
+        <ul>
+          <li><strong>10 tailored questions</strong> generated for your exact role (you can choose 7, 8, 9, or 10, plus the question mix and difficulty, before the questions are generated).</li>
+          <li><strong>4 attempts</strong> at the full interview, always on the same questions so you can compare runs.</li>
+          <li><strong>One Resume Guide-Assisted Attempt</strong> per pack (optional; see below).</li>
+        </ul>
+        <p>After your 4 attempts, you can buy a fresh 10-question pack for another $2.99. New packs always have 100% different questions, another 4 attempts, and another assisted attempt. Mock Interview unlocks never expire.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why are question count, kind, and difficulty locked on attempts 2-4?</summary>
+      <div class="answer">
+        <p>All 4 attempts on a pack use the same questions so your runs are graded on the same material and can be compared fairly. The pickers lock the moment your pack's questions are generated. To change them, buy a fresh question pack; its pickers are editable before its questions are generated.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How are attempts counted?</summary>
+      <div class="answer">
+        <p>The moment you confirm and start, the attempt counts as 1 of your 4, even if you leave before finishing. Unfinished attempts are saved automatically; reopen them from <strong>More &rarr; My Interview Sessions</strong> to continue where you left off. An "Attempts left" badge stays visible while you practice.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What is the Resume Guide-Assisted Attempt?</summary>
+      <div class="answer">
+        <p>An optional one-time mode (once per pack) where Resume Guide writes a strong sample answer for every question in your pack, grades them, and saves the finished attempt to your history. It's a fast way to see what excellent answers look like for your exact role.</p>
+        <ul>
+          <li>It counts as <strong>1 of your 4 attempts</strong>.</li>
+          <li>Only <strong>one</strong> assisted attempt per pack.</li>
+          <li>Building it usually takes 1 to 2 minutes, and you can close the app; it finishes in the background and appears in My Interview Sessions.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I get help while I'm answering?</summary>
+      <div class="answer">
+        <p>Yes. Tap <strong>Need help?</strong> under the answer box for three options:</p>
+        <ul>
+          <li><strong>Finish my thought</strong>: continues what you've typed, in your voice.</li>
+          <li><strong>Suggest a stronger version</strong>: rewrites your current text to be sharper and more specific.</li>
+          <li><strong>Give me a hint</strong>: a 1-2 sentence nudge on what a strong answer covers, without writing it for you.</li>
+        </ul>
+        <p>Help is free during an in-progress attempt. It doesn't use an attempt or a credit.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why is the answer box flagged as "too short"?</summary>
+      <div class="answer">
+        <p>Real interview answers usually run 2 to 4 sentences with a specific example. The app requires at least 5 words to submit and gently warns you below about 25 words. You can still submit; the warning is just a nudge. There's a hard cap of 250 words per answer.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What's in the summary at the end?</summary>
+      <div class="answer">
+        <p>An overall score out of 100, your top strengths, the gaps to work on, tips for next time, and every question with your answer and its per-question score. You can <strong>download or share the summary as a PDF</strong>, and completed sessions stay in My Interview Sessions so you can compare attempts.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I rename or delete a past session?</summary>
+      <div class="answer">
+        <p>Open <strong>More &rarr; My Interview Sessions</strong>. Long-press a session to rename it, or swipe to delete it (deleting a session can't be undone). Tap a completed session to see its summary, or an incomplete one to resume it.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- CAREER TOOLKIT ------------------- -->
+<details class="section" id="toolkit">
+  <summary>
+    <span class="ico">🧰</span>
+    <span class="label">Career Toolkit</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>What is the Career Toolkit?</summary>
+      <div class="answer">
+        <p>A set of <strong>23 quick-write tools</strong> for the career moments around the resume itself, organized in five groups:</p>
+        <ul>
+          <li><strong>Job-change paperwork</strong>: resignation letter, counter-offer reply, acceptance letter, reference request.</li>
+          <li><strong>Outreach</strong>: cold outreach to a company, recruiter LinkedIn DM, coffee chat invite, LinkedIn new-role announcement.</li>
+          <li><strong>Workplace moves</strong>: promotion request memo, salary increase letter, pushing back on a deadline, apology email, flexible work request, sabbatical request.</li>
+          <li><strong>Interview answers</strong>: "Tell me about yourself," weakness answer, why this company, why hire you, salary expectations, why you're leaving.</li>
+          <li><strong>Follow-ups</strong>: withdrawing an application, thank-you note after an interview, follow-up when there's no reply.</li>
+        </ul>
+        <p>Open it from the <strong>Career Toolkit</strong> card on the Home screen. Each tool shows what it does, what you'll fill in, and an example before you buy anything.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How does Career Toolkit pricing work?</summary>
+      <div class="answer">
+        <p>Each tool is a small one-time purchase: <strong>$0.99 or $1.99</strong> depending on the tool. A purchase gives you <strong>3 generations</strong> of that tool, and they're valid forever. When you've used all 3, you can top up with another pack of 3 at the same price. Browsing tools and examples is free.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Where do my generated documents go?</summary>
+      <div class="answer">
+        <p>Every generation is saved to your history at <strong>More &rarr; My Career Toolkit</strong>. From the result screen (or the history) you can copy the text, share it, generate again, or swipe to delete an entry.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- JOB DESCRIPTIONS ------------------- -->
+<details class="section" id="jobs">
+  <summary>
+    <span class="ico">📄</span>
+    <span class="label">Job descriptions</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How do I save a job description?</summary>
+      <div class="answer">
+        <p>Go to <strong>More &rarr; Job Descriptions</strong> and tap the add button (or save one on the fly inside Optimize or Cover Letter). Give it a title, then paste the text (at least 50 characters) or upload a PDF/DOCX/TXT file up to 5 MB. Saved JDs can be reused across Optimize, cover letters, and the Mock Interview Coach.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I manage saved job descriptions?</summary>
+      <div class="answer">
+        <p>Yes. Open a JD to read it, copy its text, or rename it. Deleting a JD moves it to the Recycle Bin for 30 days. Past optimization runs keep their score snapshots even if the JD is deleted.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- SAVED ITEMS & RECYCLE BIN ------------------- -->
+<details class="section" id="saved">
+  <summary>
+    <span class="ico">🗂️</span>
+    <span class="label">Saved items &amp; Recycle Bin</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How are My Resumes organized?</summary>
+      <div class="answer">
+        <p>By default <strong>My Resumes</strong> groups resumes into three sections: <strong>Created</strong> (built from the questionnaire), <strong>Optimized for a job</strong>, and <strong>Uploaded</strong>. Tap the view toggle in the top corner to switch to one combined list; your choice is remembered.</p>
+        <p>You can also search, sort (by date modified, date created, or name), select multiple resumes to delete at once, and pull down to refresh.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I rename or delete things?</summary>
+      <div class="answer">
+        <p>The same gestures work across your lists (resumes, letters, match results, interview sessions, job descriptions):</p>
+        <ul>
+          <li><strong>Rename</strong>: long-press an item (or swipe right where available).</li>
+          <li><strong>Delete</strong>: swipe left, or use Select mode for several at once.</li>
+        </ul>
+        <p>Deleted resumes, cover letters, job descriptions, and match results go to the <strong>Recycle Bin</strong> rather than vanishing immediately.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How does the Recycle Bin work?</summary>
+      <div class="answer">
+        <p>Open it from <strong>More &rarr; Recycle Bin</strong>. Items you delete land there for <strong>30 days</strong>; each row shows what it is, when you deleted it, and how long until it auto-deletes. Swipe right (or use the menu) to <strong>Restore</strong>, swipe left to <strong>Delete permanently</strong>, or use <strong>Empty bin</strong> to clear everything at once. After 30 days items are permanently removed automatically.</p>
+        <p>Screen &amp; Interview candidates and jobs use the same bin, shared with your team.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why do my lists open instantly even with bad reception?</summary>
+      <div class="answer">
+        <p>The app keeps a local copy of your lists, shows it immediately, and refreshes quietly from the server in the background. If you're fully offline you can still browse what was last loaded; anything that generates new content needs a connection.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- NOTIFICATIONS ------------------- -->
+<details class="section" id="notify">
+  <summary>
+    <span class="ico">🔔</span>
+    <span class="label">Notifications &amp; reminders</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>What notifications does Resume Guide send?</summary>
+      <div class="answer">
+        <ul>
+          <li><strong>Task finished</strong>: when a background job completes (resume created, optimization done, resume imported, preview unlocked, Smart Modify applied, candidate screened, assisted interview ready). Tapping the notification opens the result.</li>
+          <li><strong>Interview reminders</strong> (Screen &amp; Interview): before scheduled interviews, at the times you pick (5, 15, or 30 minutes, 1 hour, or 1 day before).</li>
+          <li><strong>Credit expiry reminders</strong>: 14 days, 3 days, and 1 day before a credit pack expires.</li>
+        </ul>
+        <p>Reminders are scheduled on your device for free. There's also a bell on the Home screen with your recent in-app notifications.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Do I have to allow notifications?</summary>
+      <div class="answer">
+        <p>No. The app asks for permission once and works fine without it; results still appear in your saved lists, you just won't get a ping when they're ready. You can change your choice any time in Android's Settings &rarr; Apps &rarr; Resume Guide &rarr; Notifications.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- SCREEN & INTERVIEW ------------------- -->
+<details class="section" id="hr">
+  <summary>
+    <span class="ico">🧑‍💼</span>
+    <span class="label">Screen &amp; Interview (for recruiters)</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>What is Screen &amp; Interview?</summary>
+      <div class="answer">
+        <p>A full recruiting workspace built into Resume Guide. Open it from the <strong>Screen &amp; Interview Assistant</strong> card on the Home screen. It has its own five tabs:</p>
+        <ul>
+          <li><strong>Dashboard</strong>: open jobs, candidates, average fit, who needs review, today's interviews, and quick actions.</li>
+          <li><strong>Jobs</strong>: post roles (or save drafts), close and reopen them.</li>
+          <li><strong>Pipeline</strong>: a drag-and-drop board with the stages Applied, Screening, Interview, Final round, Offer, Hired, and Rejected.</li>
+          <li><strong>Candidates</strong>: add candidates, score them against a job, and manage their profiles.</li>
+          <li><strong>More</strong>: interviews, team and access, activity log, HR plans and pricing, Recycle Bin, and a dedicated Help &amp; FAQ.</li>
+        </ul>
+        <p>A welcome tour runs the first time you open the workspace, and the workspace has its own in-depth <strong>Help &amp; FAQ</strong> under its More tab.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I add and score a candidate?</summary>
+      <div class="answer">
+        <p>Tap <strong>Add candidate</strong>, then upload the resume (PDF, DOCX, or TXT, up to 5 MB) or paste the text. The app reads the candidate's name and role automatically; you can type them if needed. Assign the candidate to one of your jobs and tap <strong>Score</strong>.</p>
+        <p>Scoring uses <strong>1 screening credit</strong> and returns a fit score from 0 to 100, a Strong / Average / Weak rating, key strengths, gaps, and a recommended next step. Scoring runs in the background, so you can keep working; you'll get a notification when it's done. If scoring fails, no credit is charged.</p>
+        <p>Only upload resumes you have permission to process. Candidate data stays in your workspace.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Are the candidate scores decisions?</summary>
+      <div class="answer">
+        <p>No. Scores are AI estimates of how well the resume text matches the job description, designed to help you prioritize which CVs to read first. They can't verify claims, and they're less reliable for unusual career paths or unusual layouts. Resume Guide does not analyze protected-class attributes (age, gender, race, religion, disability, nationality, and so on), every score carries a fair-hiring reminder, and a human should make every hiring decision. If a score looks wrong, use <strong>Report AI mistake</strong>.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What are interview guides?</summary>
+      <div class="answer">
+        <p>For any scored candidate you can generate a tailored interview document in two formats: a <strong>Personalized Interview Plan</strong> (timed sections, tailored questions with "listen for" cues, a scoring rubric, and green-light / red-flag criteria) or a <strong>Question Bank by Topic</strong> (12 to 18 questions across Experience, Technical, Communication, Teamwork, and Problem-Solving, tagged by difficulty).</p>
+        <p>The guide is <strong>included with the candidate's screening</strong> at no extra credit, comes in four print designs (Navy Classic, Bold Amber, Glass Mesh Brand, Minimal Teal), and downloads as PDF or Word. You can regenerate each format once more for free (2 generations per candidate per format). Generating a guide for a candidate you haven't scored uses 1 screening credit.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do interviews and reminders work?</summary>
+      <div class="answer">
+        <p>Schedule interviews from a candidate's profile or the workspace More tab: date, time, duration (15 to 90 minutes), type (phone, video, or in-person), interviewers from your team, location or link, and notes. The app checks your interviewers for double-bookings before saving, reminds you on your phone at the times you choose, and lists everything grouped by day. You can also record shared interviewer <strong>Feedback</strong> on each candidate: a 1-5 star rating, interview type, a hire recommendation, strengths, and concerns.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do teams work in Screen &amp; Interview?</summary>
+      <div class="answer">
+        <p>Invite teammates by email from <strong>More &rarr; Team &amp; access</strong>. Everyone on a team shares the same jobs, candidates, interviews, activity log, Recycle Bin, and screening credits, with changes syncing live. Roles: <strong>Owner</strong> (everything, including billing), <strong>Admin</strong> (manage the team and all data), <strong>Recruiter</strong> (manage candidates, jobs, and interviews), <strong>Hiring Manager</strong> (review shared candidates, move them along, leave feedback), and <strong>Viewer</strong> (read-only, plus feedback). Hiring Managers and Viewers only see the jobs and candidates you explicitly share with them. You can belong to several teams, switch your active workspace any time, and own up to 10 teams.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What does Screen &amp; Interview cost?</summary>
+      <div class="answer">
+        <p>Screening is pay-per-candidate; there are no free screenings. <strong>1 credit = 1 candidate</strong>: the screening plus that candidate's interview guide. A Single Screening is $4.99, and one-time packs bring the per-candidate price down (10, 25, 100, or 300 screenings). For high volume there's <strong>HR Enterprise</strong>, an auto-renewing monthly subscription with 500 screenings per month (the allowance resets each billing month and doesn't roll over). Pack credits are valid for 4 months. Everything else in the workspace (jobs, pipeline, interviews, notes, feedback, activity, exports) is free.</p>
+        <p>Current prices are in the workspace under <strong>More &rarr; HR Plans &amp; Pricing</strong>; exports and reports are never watermarked.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I export a candidate report?</summary>
+      <div class="answer">
+        <p>Yes. Open a candidate and tap <strong>Export report</strong> to save or share a PDF or Word file (or print it). The report includes the profile, fit result, interview guide, and your notes.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What is HR Mode (View Only)?</summary>
+      <div class="answer">
+        <p>A focus mode for recruiters, toggled in the workspace's More menu. When it's on, the app opens straight into Screen &amp; Interview and hides the job-seeker features, and a small "HR Mode" chip shows on the dashboard. Turn it off the same way to bring the full app back.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- EXPORT ------------------- -->
+<details class="section" id="export">
+  <summary>
+    <span class="ico">⬇️</span>
+    <span class="label">Downloading &amp; sharing</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How do I download my resume?</summary>
+      <div class="answer">
+        <p>On the resume preview screen, tap the download button at the bottom. You can:</p>
+        <ul>
+          <li>Copy the plain text to your clipboard, or share it to any app.</li>
+          <li>Save or share a <strong>PDF</strong> (works with every template).</li>
+          <li>Save or share a <strong>Word (.docx)</strong> file (Minimal single-column templates: Lumen, Quill, Marlow, Plume).</li>
+          <li><strong>Print</strong> through Android's native print dialog.</li>
+        </ul>
+        <p>Free-tier previews can't be downloaded; unlock the full resume with a credit first (see "What is preview mode?" under Building your resume). Paid resumes download clean, with no watermark.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>What else can I export?</summary>
+      <div class="answer">
+        <ul>
+          <li><strong>Match Reports</strong>: one-page PDF from any match result (print or share).</li>
+          <li><strong>Mock Interview summaries</strong>: PDF from the summary screen.</li>
+          <li><strong>Candidate reports</strong> (Screen &amp; Interview): PDF or Word, plus print.</li>
+          <li><strong>Interview guides</strong> (Screen &amp; Interview): PDF or Word in four designs.</li>
+          <li><strong>Cover letters and Career Toolkit documents</strong>: copy or share as text.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why is my preview blurry?</summary>
+      <div class="answer">
+        <p>The on-screen preview is a fast snapshot. The downloaded PDF is rendered at full print resolution and is always crisp; pinch-zoom inside any preview to confirm.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- APPEARANCE ------------------- -->
+<details class="section" id="appearance">
+  <summary>
+    <span class="ico">🌓</span>
+    <span class="label">Appearance &amp; tours</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>How do I switch to dark mode?</summary>
+      <div class="answer">
+        <p>Tap <strong>More &rarr; Appearance &rarr; Theme</strong>, then pick <strong>Dark</strong>. The whole app updates instantly, including these help pages. Pick <strong>System</strong> if you'd rather have it follow your phone's dark-mode setting automatically.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Can I replay the tours?</summary>
+      <div class="answer">
+        <p>Yes. <strong>More &rarr; Help</strong> has "Replay the Quick Tour" (the 5-step intro new users see) and "Replay the Create Resume tutorial." The Screen &amp; Interview welcome tour is replayable from the workspace's own More tab.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- PRIVACY ------------------- -->
+<details class="section" id="privacy">
+  <summary>
+    <span class="ico">🔒</span>
+    <span class="label">Privacy &amp; data</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>Is my data safe?</summary>
+      <div class="answer">
+        <p>Your account data is stored on our servers in the United States (hosted on Render), and your documents and uploaded files are stored on our own secure storage server, all encrypted in transit and protected at rest. We do not sell your data, and there are no ads in the app.</p>
+        <p>The full details are in our <a href="https://legal.resumeguide.ai/privacy.html">Privacy Policy</a> (also available under More &rarr; Legal).</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Are my resumes shared with anyone?</summary>
+      <div class="answer">
+        <p>No. Resume Guide does not sell your data and does not share resumes with recruiters, advertisers, or any third party. The only outside services that touch your data are the ones that run the app: our hosting and database providers, our AI provider (used only when you tap a generate feature), Firebase for sign-in and notifications, Resend for transactional email, Cloudflare for security checks, and Google Play for purchases.</p>
+        <p>If you join a Screen &amp; Interview team, the jobs, candidates, and interviews in that team's workspace are shared with your teammates according to their roles. Your personal resumes and letters are never part of a team workspace.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Does the AI provider keep my resume?</summary>
+      <div class="answer">
+        <p>Generation features send only the relevant text (your resume, the JD, your change request, a candidate's resume) to our AI provider for processing. Under the provider's API terms, inputs are not used to train public models. Content is only sent when you actively use a generate feature.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I delete individual items or everything?</summary>
+      <div class="answer">
+        <ul>
+          <li><strong>One item</strong> (resume, letter, JD, match result, candidate): swipe left on it in its list, or use Select mode. It goes to the Recycle Bin for 30 days, where you can restore it or delete it permanently right away.</li>
+          <li><strong>Everything</strong>: More &rarr; Account &rarr; Delete my account. Deletion is immediate and permanent.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Why am I being asked to complete a security check?</summary>
+      <div class="answer">
+        <p>Free accounts occasionally see a quick Cloudflare security check before a generation runs. It protects the service from bots and abuse. Complete the check and your request continues; paid activity doesn't normally see it.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Does the app work offline?</summary>
+      <div class="answer">
+        <p>You can browse the saved lists the app has already loaded, read these help pages and the legal documents, and your Create Resume draft is kept locally. Anything that generates content (Create, Optimize, letters, screenings, Mock Interview) needs an internet connection, because generation runs on our servers.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<!-- ------------------- TROUBLESHOOTING ------------------- -->
+<details class="section" id="trouble">
+  <summary>
+    <span class="ico">🛠</span>
+    <span class="label">Troubleshooting</span>
+    <span class="count"></span>
+  </summary>
+  <div class="section-body">
+
+    <details class="faq">
+      <summary>The app crashes or freezes.</summary>
+      <div class="answer">
+        <ol>
+          <li>Force-close the app: swipe it away from recent apps, then re-open.</li>
+          <li>Make sure you're on the latest version: Play Store &rarr; Manage apps &amp; device &rarr; Resume Guide &rarr; Update (if available).</li>
+          <li>Restart your phone.</li>
+          <li>If the issue persists, tap <strong>More &rarr; Help &rarr; Send feedback</strong> and describe what you were doing.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>The first request after opening the app is slow.</summary>
+      <div class="answer">
+        <p>After a long idle period our backend can take 30 to 60 seconds to wake up, so the very first generation of the day sometimes takes longer than usual. Later requests are much faster. If something seems stuck, check the matching saved list; background jobs keep running and land there when done.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>"You're out of credits" or "Plan limit reached."</summary>
+      <div class="answer">
+        <p>Free accounts get 2 resume previews; after that, generating needs a credit. Open <strong>More &rarr; Plans &amp; Pricing</strong> to see the options; a one-time pack is the lowest-friction way to unlock more.</p>
+        <p>If you've already paid and still hit this message, tap <strong>Restore</strong> on the Pricing screen, then pull to refresh on Account details.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>"You're moving fast" message.</summary>
+      <div class="answer">
+        <p>To keep the service reliable there's a short per-account limit on how many generations can start per minute. Wait a few seconds and try again; nothing is lost and nothing is charged.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Purchase fails with "Item not found."</summary>
+      <div class="answer">
+        <p>This usually means the app build on your phone doesn't match what Google Play has on record. Make sure you installed Resume Guide from the Play Store (not by sideloading an APK). If you're part of a closed test, you also need to be on the latest test build; open the Play Store and check for updates.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>The app says an update is required.</summary>
+      <div class="answer">
+        <p>Occasionally an old version can no longer be used safely (for example after a security or billing fix), and the app asks you to update before continuing. Tap <strong>Update on Google Play</strong>, install the update, then return. Your account and documents are safe throughout.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Smart Modify isn't working.</summary>
+      <div class="answer">
+        <p>Smart Modify needs an internet connection and at least one revision credit. Check your balance under <strong>More &rarr; Plans &amp; Pricing</strong> or Account details. If you have credits and a connection but it still fails, try again in a few seconds; the backend occasionally needs a moment to spin up after idle. Failed attempts are not charged.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I report a bug or request a feature?</summary>
+      <div class="answer">
+        <p>Tap <strong>More &rarr; Help &rarr; Send feedback</strong>. Pick a category (Bug / Idea / Compliment / Other), describe what happened, and tap Send. We read every message. Your email, app version, and device OS are attached automatically so we can follow up and reproduce bugs; nothing else is included.</p>
+      </div>
+    </details>
+
+  </div>
+</details>
+
+<div class="footer">
+  <strong>Still need help?</strong> Email <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a> or tap <strong>More &rarr; Help &rarr; Send feedback</strong> in the app. Include a short description of what happened and the screen you were on; that gets you a faster, more accurate reply.
+</div>
+
+</main>
+
+<script>
+  // ----------------------------------------------------------------
+  // Help & FAQ: section + nested-faq accordion behavior + search.
+  //
+  // Sections (details.section) are closed by default; tapping the
+  // category title expands the list of question titles, and tapping a
+  // question reveals its answer.
+  //
+  // Behaviors:
+  //   - Each section header shows a tiny count of FAQs inside it.
+  //   - Clicking a quick-jump chip opens the matching section and
+  //     scrolls it into view (offset to clear the sticky search bar).
+  //   - Typing in the search box filters FAQs across all sections,
+  //     auto-opens any section that has a match, highlights the
+  //     matched substring in the question title, and hides sections
+  //     with zero matches. Clearing the box restores the default
+  //     "Getting started open, everything else closed" state.
+  // ----------------------------------------------------------------
+  (function () {
+    const input    = document.getElementById('q');
+    const noRes    = document.getElementById('noResults');
+    const chips    = document.getElementById('chips');
+    const sections = Array.from(document.querySelectorAll('details.section'));
+    const faqs     = Array.from(document.querySelectorAll('details.faq'));
+
+    // Cache each FAQ's original summary HTML so we can restore it
+    // cleanly each keystroke instead of accumulating <mark>s, and
+    // its lowercased searchable text.
+    const cache = faqs.map(d => {
+      const summary = d.querySelector('summary');
+      return {
+        el: d,
+        section: d.closest('details.section'),
+        summary: summary,
+        summaryHtml: summary.innerHTML,
+        text: (d.innerText || d.textContent || '').toLowerCase(),
+      };
+    });
+
+    // Stamp each section header with its FAQ count.
+    sections.forEach(sec => {
+      const countEl = sec.querySelector('summary .count');
+      if (!countEl) return;
+      const n = sec.querySelectorAll('details.faq').length;
+      countEl.textContent = n + (n === 1 ? ' answer' : ' answers');
+    });
+
+    function escapeRe(s) {
+      return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // -- Quick-jump chips: open the target section + scroll. --
+    chips.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (!target) return;
+        // Let the browser handle the scroll-to-anchor, but make sure
+        // the section is open first.
+        target.open = true;
+      });
+    });
+
+    // -- Live filter. --
+    function reset() {
+      cache.forEach(c => {
+        c.summary.innerHTML = c.summaryHtml;
+        c.el.style.display = '';
+        c.el.open = false;
+      });
+      sections.forEach((sec, i) => {
+        sec.style.display = '';
+        // Default landing state: only the first section is open.
+        sec.open = (i === 0);
+      });
+      // And first FAQ inside first section is open as a starting point.
+      const firstFaq = sections[0] && sections[0].querySelector('details.faq');
+      if (firstFaq) firstFaq.open = true;
+      chips.classList.remove('hidden');
+      noRes.classList.remove('show');
+    }
+
+    function apply() {
+      const q = input.value.trim().toLowerCase();
+
+      // Restore every summary first.
+      cache.forEach(c => { c.summary.innerHTML = c.summaryHtml; });
+
+      if (q === '') { reset(); return; }
+
+      chips.classList.add('hidden');
+
+      // Track which sections have any visible matches.
+      const matchedSections = new Set();
+      let visible = 0;
+
+      cache.forEach(c => {
+        if (c.text.indexOf(q) !== -1) {
+          c.el.style.display = '';
+          c.el.open = true;
+          const re = new RegExp(escapeRe(q), 'gi');
+          c.summary.innerHTML = c.summary.innerHTML.replace(
+            re, m => '<mark>' + m + '</mark>');
+          matchedSections.add(c.section);
+          visible++;
+        } else {
+          c.el.style.display = 'none';
+          c.el.open = false;
+        }
+      });
+
+      // Open every section with matches, hide sections with none.
+      sections.forEach(sec => {
+        if (matchedSections.has(sec)) {
+          sec.style.display = '';
+          sec.open = true;
+        } else {
+          sec.style.display = 'none';
+          sec.open = false;
+        }
+      });
+
+      noRes.classList.toggle('show', visible === 0);
+    }
+
+    input.addEventListener('input', apply);
+    reset();  // initial state
+  })();
+</script>
+</body>
+</html>

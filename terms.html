@@ -3,13 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Terms of Service — Resume Guide</title>
+<title>Terms of Service - Resume Guide</title>
 <style>
-  :root{
+  /* Theme is controlled 100% by the in-app theme toggle.
+     legal_doc_screen.dart injects either class="light" or
+     class="dark" onto the <html> tag before loading this file,
+     so the page always matches what the app shows, independent
+     of the phone's system dark-mode setting. */
+  :root, html.light{
     --ink:#1f2329; --body:#45484f; --muted:#7a7c83;
     --paper:#ffffff; --accent:#0d6efd; --soft:#f2f6fc;
-    --warn:#fff7e6; --warn-edge:#f0c879;
+    --line:#e3eaf3;
+    --warn:#fff7e6; --warn-edge:#f0c879; --warn-text:#5a4413;
   }
+  html.dark{
+    --ink:#f3f6fc; --body:#c8cfdd; --muted:#8b94a8;
+    --paper:#0f141d; --accent:#7aa7ff; --soft:#1a2332;
+    --line:#27303f;
+    --warn:#2a1f0d; --warn-edge:#a07a2c; --warn-text:#f4d59a;
+  }
+
   *{ box-sizing:border-box; }
   html,body{ margin:0; padding:0; }
   body{
@@ -43,6 +56,7 @@
   ul{ margin:6px 0 14px; padding-left:22px; }
   li{ margin:4px 0; }
   a{ color:var(--accent); }
+  strong{ color:var(--ink); }
   .note{
     background:var(--soft);
     border-left:3px solid var(--accent);
@@ -54,6 +68,7 @@
   .warn{
     background:var(--warn);
     border-left:3px solid var(--warn-edge);
+    color:var(--warn-text);
     padding:12px 16px;
     margin:14px 0;
     border-radius:6px;
@@ -63,24 +78,26 @@
     margin-top:48px;
     font-size:13px;
     color:var(--muted);
-    border-top:1px solid #e3eaf3;
+    border-top:1px solid var(--line);
     padding-top:16px;
   }
 </style>
 </head>
 <body>
 <main>
-  <a class="back" href="index.html">← Back</a>
+  <a class="back" href="index.html">&larr; Back</a>
 
   <h1>Terms of Service</h1>
-  <p class="effective">Effective: May 26, 2026</p>
+  <p class="effective">Effective: July 15, 2026</p>
 
   <p>These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the
   <strong>Resume Guide</strong> mobile application (the &ldquo;App&rdquo;)
   published by <strong>Zenawi</strong> (&ldquo;we,&rdquo; &ldquo;us,&rdquo;
-  or &ldquo;our&rdquo;). By installing, signing in to, or otherwise
-  using the App you agree to these Terms. If you do not agree, do not
-  use the App.</p>
+  or &ldquo;our&rdquo;). The App includes both the job-seeker features
+  (resumes, cover letters, interview practice, and the Career Toolkit) and
+  the <strong>Screen &amp; Interview</strong> recruiting workspace. By
+  installing, signing in to, or otherwise using the App you agree to these
+  Terms. If you do not agree, do not use the App.</p>
 
   <h2>1. Who can use the App</h2>
   <p>You must be at least 13 years old (or the minimum age of digital
@@ -89,22 +106,28 @@
   information you provide about yourself is accurate.</p>
 
   <h2>2. Your account</h2>
-  <p>You are responsible for keeping your sign-in credentials secure
-  and for everything that happens under your account. Notify us at
+  <p>You can sign in with an email address and password or with a Google
+  account. Accounts created with an email address and password must verify
+  that email address before using the App. You are responsible for keeping
+  your sign-in credentials secure and for everything that happens under
+  your account. Notify us at
   <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a>
   promptly if you believe your account has been compromised.</p>
 
   <h2>3. Your content</h2>
   <p>You retain ownership of the resumes, cover letters, job
-  descriptions, photos, and other content you create or upload
-  (&ldquo;Your Content&rdquo;). You grant us a limited, worldwide,
+  descriptions, candidate materials, and other content you create or
+  upload (&ldquo;Your Content&rdquo;). You grant us a limited, worldwide,
   royalty-free licence to host, store, and process Your Content only
   as needed to operate the App and provide the features you use
   (for example, sending text to an AI service to generate a
-  suggestion). This licence ends when you delete the content or your
-  account.</p>
+  suggestion, or rendering a PDF for download). This licence ends when
+  you delete the content or your account.</p>
   <p>You confirm that Your Content does not infringe anyone else&rsquo;s
-  rights and that you have the right to upload it.</p>
+  rights and that you have the right to upload it. We may remove content
+  that violates these Terms. Please keep your own copies of important
+  documents: the App lets you download resumes and reports at any time,
+  and we recommend exporting anything you cannot afford to lose.</p>
 
   <h2>4. AI features and disclaimer</h2>
   <div class="warn">
@@ -113,53 +136,92 @@
     line</strong> before sending a resume or cover letter to a real
     employer. You are responsible for what you submit.
   </div>
-  <p>The App uses third-party AI services to generate resume rewrites,
-  cover letters, HR summaries, and similar text. We do not guarantee
-  that AI output is accurate, complete, suitable for any particular
-  job, or free of bias. AI features are provided &ldquo;as is&rdquo;
-  and are tools to assist you, not a substitute for your own judgement.</p>
+  <p>The App uses a third-party AI service to generate resume drafts and
+  rewrites, match scores, cover letters, interview questions and feedback,
+  candidate screening summaries, interview guides, and Career Toolkit
+  documents. We do not guarantee that AI output is accurate, complete,
+  suitable for any particular job, or free of bias. Match scores and fit
+  scores are estimates; every employer reads a resume differently. AI
+  features are provided &ldquo;as is&rdquo; and are tools to assist you,
+  not a substitute for your own judgement.</p>
+  <p>To keep the service reliable and affordable for everyone, AI features
+  are subject to fair-use protections such as per-account rate limits,
+  regeneration caps on certain documents, security checks (for example a
+  CAPTCHA for free accounts), and credit requirements. Attempting to
+  bypass these protections is a violation of these Terms.</p>
 
-  <h2>4a. Fair hiring &mdash; HR features</h2>
-  <p>The HR features in the App (candidate analysis, job-fit scoring,
-  interview-guide generation) are decision-support tools only. They are
-  not a substitute for a qualified human review of any candidate.</p>
+  <h2>4a. Fair hiring and the Screen &amp; Interview workspace</h2>
+  <p>The Screen &amp; Interview features (candidate analysis, job-fit
+  scoring, interview-guide generation, and related reports) are
+  decision-support tools only. They are not a substitute for a qualified
+  human review of any candidate.</p>
   <p>You agree that:</p>
   <ul>
-    <li><strong>Resume Guide scores are estimates &mdash; review with
-      humans before hiring decisions.</strong> You will not use a
-      Resume Guide fit score as the sole basis for hiring, rejecting,
-      advancing, or rejecting a candidate.</li>
+    <li><strong>Resume Guide scores are estimates. Review with humans
+      before hiring decisions.</strong> You will not use a Resume Guide
+      fit score as the sole basis for hiring, rejecting, or advancing a
+      candidate.</li>
     <li><strong>Resume Guide does not analyze protected-class
       attributes</strong> (such as age, gender, race, ethnicity,
       religion, disability, national origin, marital status, pregnancy,
       veteran status, sexual orientation, or gender identity), and you
       will not configure or use the App to do so.</li>
+    <li><strong>You are responsible for candidate data.</strong> You will
+      only upload resumes and candidate information that you have
+      permission to process, and you will honor candidates&rsquo;
+      requests about their data. If you use teams, you are responsible
+      for who you invite and what access you grant them.</li>
     <li>You are responsible for complying with all applicable
-      employment, anti-discrimination, and AI-disclosure laws in the
-      jurisdiction where you hire (including but not limited to Title
-      VII, the ADA, the ADEA, NYC Local Law 144, the EU AI Act, and any
-      state, provincial, or municipal equivalent).</li>
+      employment, anti-discrimination, privacy, and AI-disclosure laws in
+      the jurisdictions where you hire (including but not limited to
+      Title VII, the ADA, the ADEA, NYC Local Law 144, the EU AI Act, and
+      any state, provincial, or municipal equivalent).</li>
   </ul>
 
   <h2>4b. Reporting inaccurate Resume Guide output</h2>
-  <p>Every screen in the App that shows Resume Guide-generated content
-  also has a &ldquo;Report inaccurate Resume Guide output&rdquo;
-  option. We review every report and use it to improve the product.
-  Reporting an output does not by itself remove it from your account
-  &mdash; you can also edit or delete the content yourself.</p>
+  <p>Screens that show Resume Guide-generated content include a
+  &ldquo;Report inaccurate Resume Guide output&rdquo; (or &ldquo;Report
+  AI mistake&rdquo;) option. We review every report and use it to improve
+  the product. Reporting an output does not by itself remove it from your
+  account; you can also edit or delete the content yourself.</p>
 
   <h2>5. Purchases, credits, and subscriptions</h2>
-  <p>The App offers optional one-time purchases and subscriptions through
-  Google Play. By purchasing, you agree both to these Terms and to
-  Google Play&rsquo;s payment terms.</p>
+  <p>The App offers optional one-time purchases and an auto-renewing
+  subscription through Google Play. By purchasing, you agree both to these
+  Terms and to Google Play&rsquo;s payment terms. Prices are shown by
+  Google Play in your local currency at checkout and may change over
+  time. The current catalog is always shown in the App under
+  <strong>More &rarr; Plans &amp; Pricing</strong>.</p>
   <p>Credits and other digital items you buy:</p>
   <ul>
     <li>are licensed to you for personal use within the App;</li>
-    <li>are not transferable to another account;</li>
-    <li>have no cash value;</li>
-    <li>are consumed as you use the features they unlock;</li>
+    <li>are not transferable to another account and have no cash
+      value;</li>
+    <li>are consumed as you use the features they unlock (a credit is
+      only consumed when the action succeeds);</li>
     <li>may be revoked if a purchase is reversed or refunded.</li>
   </ul>
+  <p><strong>Credit expiry.</strong> Credits from resume packs and
+  Screen &amp; Interview packs expire 4 months after purchase. Unused,
+  expired credits are not refunded. Some items do not expire: purchased
+  premium templates, Mock Interview unlocks and question packs, and
+  Career Toolkit generations.</p>
+  <p><strong>Free previews.</strong> New accounts can generate 2 free
+  resume previews (lifetime, per account). Previews are watermarked,
+  cannot be downloaded, and do not include the paid features. Purchasing
+  a pack applies to new resumes and to previews you explicitly unlock
+  with a credit; it does not automatically convert older previews.</p>
+  <p><strong>Subscriptions.</strong> The HR Enterprise subscription
+  renews monthly through Google Play until you cancel it in your Google
+  Play subscription settings. Its monthly screening allowance resets at
+  the start of each billing month and unused screenings do not roll
+  over. Uninstalling the App does not cancel a subscription.</p>
+  <p><strong>Teams.</strong> Screening credits can be bought for, or
+  transferred into, a team wallet that is shared with the members of
+  that team. Team members may consume shared credits. Personal credits
+  transferred to a team return to the team owner&rsquo;s personal
+  balance only if the team is deleted. The team owner is responsible
+  for billing decisions on their team.</p>
 
   <h2>6. Refunds</h2>
   <p>Refunds for purchases made through Google Play are handled by
@@ -169,8 +231,11 @@
   Please request refunds through your Google Play account. We do not
   process payments directly and cannot issue cash refunds outside Google
   Play.</p>
-  <p>If Google Play refunds a purchase, any credits or features granted
-  for that purchase will be reversed in the App.</p>
+  <p>If Google Play refunds or voids a purchase, the matching items are
+  reversed in the App: remaining credits from that purchase are removed
+  (credits already spent cannot be restored), and unlocked items granted
+  by that purchase (such as a premium template or a Mock Interview pack)
+  are revoked.</p>
 
   <h2>7. Prohibited use</h2>
   <p>When using the App you agree NOT to:</p>
@@ -180,11 +245,15 @@
       in violation of applicable law;</li>
     <li>upload content that is unlawful, defamatory, hateful, sexually
       explicit, infringing, or that contains malware;</li>
+    <li>upload another person&rsquo;s resume or personal information
+      without the permission or lawful basis to process it;</li>
     <li>use the App to harass, stalk, dox, or discriminate against any
       person or protected group;</li>
     <li>use the App to evaluate candidates in a way that violates
       anti-discrimination or employment law;</li>
     <li>attempt to access another user&rsquo;s account or data;</li>
+    <li>attempt to bypass credit checks, rate limits, CAPTCHA, or other
+      technical protections;</li>
     <li>reverse engineer, decompile, or attempt to extract the source
       code of the App, except where permitted by law;</li>
     <li>use automated means (scraping, bots) to interact with the App;</li>
@@ -195,44 +264,62 @@
   </ul>
 
   <h2>8. Intellectual property</h2>
-  <p>The App itself — including its source code, designs, template
-  layouts, written copy, logos, and trademarks — is owned by Zenawi or
+  <p>The App itself, including its source code, designs, template
+  layouts, written copy, logos, and trademarks, is owned by Zenawi or
   its licensors and is protected by copyright and other laws. These
-  Terms do not transfer any of those rights to you.</p>
+  Terms do not transfer any of those rights to you. If you send us
+  feedback or suggestions, you agree we may use them to improve the App
+  without any obligation to you.</p>
 
   <h2>9. Suspension or termination</h2>
   <p>We may suspend or terminate your access to the App at any time if
   we reasonably believe you have violated these Terms, abused the AI
   features, attempted to defraud our billing, or put other users at
-  risk. You may stop using the App at any time and delete your account
-  by emailing us as described in our Privacy Policy.</p>
+  risk. If we terminate your account for a violation, unused credits are
+  not refunded. You may stop using the App at any time and delete your
+  account in the App under <strong>More &rarr; Account &rarr; Delete my
+  account</strong> (or by emailing us as described in our Privacy
+  Policy). Deleting your account permanently removes your data and any
+  unused credits.</p>
 
-  <h2>10. Disclaimers</h2>
+  <h2>10. Service availability and changes</h2>
+  <p>We are constantly improving the App, and features may be added,
+  changed, or removed over time. We may require you to update to a
+  newer version of the App to keep using it, for example for security
+  or compatibility reasons. We do not guarantee that the App will be
+  uninterrupted or error-free, and generation features depend on
+  third-party services that can occasionally be slow or unavailable.
+  Credits are not consumed by failed generations.</p>
+
+  <h2>11. Disclaimers</h2>
   <p>The App is provided &ldquo;as is&rdquo; and &ldquo;as
   available,&rdquo; without warranties of any kind, whether express or
   implied, including warranties of merchantability, fitness for a
   particular purpose, non-infringement, accuracy, or that the App will
   be uninterrupted or error-free. We do not warrant that using the App
-  will help you get a job or that AI-generated content is accurate.</p>
+  will help you get a job, that any candidate you hire will perform in
+  any particular way, or that AI-generated content is accurate.</p>
 
-  <h2>11. Limitation of liability</h2>
+  <h2>12. Limitation of liability</h2>
   <p>To the maximum extent permitted by law, Zenawi and its
   contributors are not liable for any indirect, incidental, special,
   consequential, exemplary, or punitive damages, or for any loss of
   profits, revenue, data, goodwill, or other intangible losses, arising
-  from or related to your use of the App — even if we have been advised
+  from or related to your use of the App, even if we have been advised
   of the possibility of such damages.</p>
   <p>Our total liability to you for any claim relating to the App is
   limited to the greater of (a) the amount you paid us for the App in
   the twelve months before the claim, or (b) US $20.</p>
 
-  <h2>12. Indemnification</h2>
+  <h2>13. Indemnification</h2>
   <p>You agree to defend, indemnify, and hold harmless Zenawi from any
   claim, loss, liability, or expense (including reasonable legal fees)
   arising from your violation of these Terms, your misuse of the App,
-  or your violation of anyone else&rsquo;s rights.</p>
+  your hiring decisions, or your violation of anyone else&rsquo;s
+  rights, including a candidate&rsquo;s privacy or employment
+  rights.</p>
 
-  <h2>13. Governing law and disputes</h2>
+  <h2>14. Governing law and disputes</h2>
   <p>These Terms are governed by the laws of the State of Washington,
   United States, without regard to its conflict-of-law principles. You
   and we agree that any dispute arising out of or relating to the App
@@ -240,13 +327,13 @@
   courts located in King County, Washington, and we both consent to the
   personal jurisdiction of those courts.</p>
 
-  <h2>14. Changes to these Terms</h2>
+  <h2>15. Changes to these Terms</h2>
   <p>We may update these Terms from time to time. When we do, we will
   update the &ldquo;Effective&rdquo; date at the top of this page and,
   for material changes, notify you inside the App. Continued use of
   the App after a change means you accept the updated Terms.</p>
 
-  <h2>15. Contact</h2>
+  <h2>16. Contact</h2>
   <p>Questions about these Terms? Email us at
   <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a>.</p>
 
