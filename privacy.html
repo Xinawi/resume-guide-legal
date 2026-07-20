@@ -81,7 +81,7 @@
   <a class="back" href="index.html">&larr; Back</a>
 
   <h1>Privacy Policy</h1>
-  <p class="effective">Effective: July 15, 2026</p>
+  <p class="effective">Effective: July 19, 2026</p>
 
   <p>This Privacy Policy explains how <strong>Zenawi</strong>
   (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses,
@@ -194,15 +194,15 @@
   Guide output&rdquo; button.</p>
 
   <h2>4. Where data is stored and who can see it</h2>
-  <p>Your data is stored on infrastructure we operate in the United
-  States. Account, billing, and credit records live in a managed
-  PostgreSQL database used by our application server (hosted on Render,
-  a US-based cloud platform). Document content and uploaded files (for
-  example resume text and candidate resume files) are stored on our own
-  self-hosted, S3-compatible storage server, reached only through an
-  encrypted tunnel. All traffic between the App, our servers, and our
-  storage uses TLS encryption in transit, and access to stored data is
-  strictly limited.</p>
+  <p>Your data is stored with established cloud providers. Account,
+  billing, and credit records live in a managed PostgreSQL database used
+  by our application server (hosted on Render, a US-based cloud
+  platform). Document content and uploaded files (for example resume
+  text and candidate resume files) are stored in Cloudflare R2, an
+  S3-compatible object storage service provided by Cloudflare, Inc. All
+  traffic between the App, our servers, and our storage uses TLS
+  encryption in transit, and access to stored data is strictly
+  limited.</p>
   <p>Only people on our team who need access for support, billing, or
   debugging can read account or resume data, and only to perform their
   duties.</p>
@@ -246,9 +246,9 @@
       in Section 3.</li>
     <li><strong>Render and our managed database provider</strong> - to
       host the application server and the account database.</li>
-    <li><strong>Cloudflare</strong> - security services: the CAPTCHA
-      shown to free accounts and the encrypted tunnel in front of our
-      storage server.</li>
+    <li><strong>Cloudflare</strong> - the CAPTCHA shown to free
+      accounts, and Cloudflare R2 object storage, where document content
+      and uploaded files are stored.</li>
     <li><strong>Resend</strong> - to send transactional email such as
       verification links, password resets, and team invitations.</li>
     <li><strong>Sentry</strong> (if enabled) - error monitoring,
@@ -329,7 +329,8 @@
   <h2>11. International users</h2>
   <p>The App is operated from the United States. If you access the App
   from outside the United States, you understand that your information
-  is processed and stored in the United States.</p>
+  is transferred to, processed, and stored in the United States and in
+  other locations where our service providers operate.</p>
 
   <h2>12. Changes to this policy</h2>
   <p>We may update this Policy from time to time. When we do, we will
