@@ -136,9 +136,10 @@
     <li><strong>Push notification tokens</strong> - if you allow
       notifications, a device push token (Firebase Cloud Messaging) so
       we can tell you when a background task finishes.</li>
-    <li><strong>Purchase information</strong> - Google Play sends us a
-      receipt token confirming the product you bought and whether it is
-      valid. We do not see or store your payment card details.</li>
+    <li><strong>Purchase information</strong> - your app store
+      (Google Play or the Apple App Store, depending on your
+      device) sends us a receipt confirming the product you bought and
+      whether it is valid. We do not see or store your payment card details.</li>
     <li><strong>Diagnostics</strong> - crash reports via Firebase
       Crashlytics and, if enabled, error reports via a monitoring
       service configured not to include personal data.</li>
@@ -162,7 +163,7 @@
       interviews, credits, and activity to the teammates you invite,
       according to their roles.</li>
     <li>To verify purchases and grant the credits you bought through
-      Google Play.</li>
+      Google Play or the Apple App Store.</li>
     <li>To send transactional email (verification links, password
       resets, team invitations) and optional push notifications.</li>
     <li>To diagnose problems, enforce our Terms, prevent abuse, and
@@ -237,8 +238,8 @@
   <p>We share the minimum information necessary with the following
   service providers, who are bound to handle it only as we instruct:</p>
   <ul>
-    <li><strong>Google Play Billing</strong> - to verify purchases and
-      subscriptions and grant credits.</li>
+    <li><strong>Google Play Billing / Apple App Store</strong> - to
+      verify purchases and subscriptions and grant credits.</li>
     <li><strong>Google Firebase</strong> - authentication (sign-in),
       push notifications (Cloud Messaging), and crash reporting
       (Crashlytics).</li>
@@ -280,8 +281,8 @@
       only an anonymized deletion record (a one-way hash of the account
       id, the email domain, and item counts, with no name or email
       address) to prove the deletion happened and to prevent abuse.
-      Google Play keeps its own record of your purchases under
-      Google&rsquo;s policies. Residual copies in our infrastructure
+      Your app store (Google Play or the Apple App Store) keeps its own
+      record of your purchases under its policies. Residual copies in our infrastructure
       providers&rsquo; rolling backups age out on a schedule measured in
       days, typically within 30 days.</li>
   </ul>
