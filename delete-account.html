@@ -96,8 +96,9 @@
 
   <h1>Delete your Resume Guide account or data</h1>
   <p class="sub">
-    For users of the <strong>Resume Guide</strong> mobile app, published by
-    Zenawi. Last updated: July 15, 2026.
+    For users of the <strong>Resume Guide</strong> Android and iPhone apps
+    and the website at resumeguide.ai, published by Zenawi. Last updated:
+    September 24, 2026.
   </p>
 
   <p>You have full control over your data in Resume Guide. You can either
@@ -124,14 +125,20 @@
         entry.</li>
       <li><strong>A candidate</strong> (Screen &amp; Interview users):
         swipe left on the candidate in the Candidates tab.</li>
+      <li><strong>On the website</strong>: open the item and use its
+        delete option.</li>
       <li><strong>A favorite template</strong>: tap the star icon on
         the template card to remove the favorite.</li>
     </ul>
-    Deleted items go to the app's <strong>Recycle Bin</strong> for
-    30 days, where you can restore them or delete them permanently
-    right away (<em>More &rarr; Recycle Bin &rarr; Delete
-    permanently</em>, or <em>Empty bin</em>). After 30 days they are
-    permanently removed from our servers automatically.
+    Deleted resumes, cover letters, job descriptions, match results,
+    Career Toolkit drafts, and Screen &amp; Interview jobs and candidates
+    go to the <strong>Recycle Bin</strong> for 30 days, where you can
+    restore them or delete them permanently right away (in the app:
+    <em>More &rarr; Recycle Bin &rarr; Delete permanently</em>, or
+    <em>Empty bin</em>; on the website: the Recycle Bin on your
+    <em>Account</em> page). After 30 days they are permanently removed from
+    our servers automatically. Screen &amp; Interview interviews you
+    delete are permanently removed after 30 days too.
   </div>
 
   <p>If you can't sign in or no longer have the app, email
@@ -142,7 +149,17 @@
 
   <h2>Delete the entire account (and all data)</h2>
 
-  <p>If you want to remove everything at once, you have two options:</p>
+  <p>If you want to remove everything at once, you have three options:</p>
+
+  <div class="warn">
+    <strong>Have an HR Enterprise subscription?</strong> If you bought it
+    in the Android app, cancel it in Google Play (Payments &amp;
+    subscriptions) before you delete your account; if you bought it in
+    the iPhone app, cancel it in Settings &rarr; your name &rarr;
+    Subscriptions. Deleting your account does not stop Google Play or
+    Apple from billing you. A subscription bought on the website is
+    cancelled for you when you delete your account.
+  </div>
 
   <h3>Option 1: delete from inside the app (fastest)</h3>
 
@@ -153,7 +170,7 @@
       <li>In the <strong>Account</strong> section, tap
         <strong>Delete my account</strong>.</li>
       <li>Confirm it's really you: re-enter your password, or sign in
-        once more with Google.</li>
+        once more with Google or Apple.</li>
       <li>Tap <strong>Delete my account</strong> and confirm the final
         warning.</li>
     </ol>
@@ -161,7 +178,21 @@
     out and returned to the login screen.
   </div>
 
-  <h3>Option 2: email us</h3>
+  <h3>Option 2: delete on the website</h3>
+
+  <div class="step">
+    <ol>
+      <li>Sign in at <a href="https://resumeguide.ai">resumeguide.ai</a>
+        and open your <strong>Account</strong> page.</li>
+      <li>Choose <strong>Delete my account</strong>.</li>
+      <li>Confirm it's really you (your password, or Google or Apple
+        once more), then confirm the deletion.</li>
+    </ol>
+    Your account and all data are removed immediately, the same as in the
+    app.
+  </div>
+
+  <h3>Option 3: email us</h3>
 
   <p>If you no longer have the app installed, or you can't sign in:</p>
 
@@ -183,7 +214,9 @@
     <strong>This action is permanent.</strong> Once deleted, your resumes,
     cover letters, saved job descriptions, match results, interview
     sessions, candidate data, owned premium templates, and remaining
-    credits cannot be recovered, and unused credits are not refunded.
+    personal credits cannot be recovered, and unused credits are not
+    refunded. Credits you bought for or moved into a team wallet stay
+    with that team.
   </div>
 
   <h2>What is deleted</h2>
@@ -196,10 +229,11 @@
     <tr><td>Every resume you created or uploaded</td><td>Deleted immediately</td></tr>
     <tr><td>Cover letters, saved job descriptions, match results, and interview sessions</td><td>Deleted immediately</td></tr>
     <tr><td>Candidate data, evaluations, and notes (Screen &amp; Interview)</td><td>Deleted immediately</td></tr>
-    <tr><td>Uploaded files (resumes, job descriptions, candidate resumes)</td><td>Deleted immediately</td></tr>
+    <tr><td>Uploaded files (resumes, job descriptions, candidate resumes)</td><td>Deleted immediately (if our file storage can't be reached at that moment, our daily cleanup removes them once it is back)</td></tr>
     <tr><td>Favorites and owned premium templates</td><td>Deleted immediately</td></tr>
     <tr><td>Credits, purchase records, and usage history</td><td>Deleted immediately</td></tr>
     <tr><td>Security and usage logs</td><td>Deleted immediately</td></tr>
+    <tr><td>Sign in with Apple link</td><td>If you signed in with Apple, we ask Apple to end Resume Guide's access to your Apple Account</td></tr>
   </table>
 
   <h2>What is kept</h2>
@@ -208,16 +242,33 @@
     <tr><th>Data type</th><th>Details</th></tr>
     <tr>
       <td>Anonymized deletion record</td>
-      <td>A one-way hash of the account id, the email domain (for
-        example &ldquo;gmail.com&rdquo;), and item counts. It contains
-        no name or email address and cannot identify you. We keep it to
-        prove the deletion happened and to prevent abuse.</td>
+      <td>A one-way hash of the account ID, the email domain (for
+        example &ldquo;gmail.com&rdquo;), the sign-in method, who asked
+        for the deletion, and counts of deleted resumes and cover letters.
+        It contains no name or email address. We keep it to prove the
+        deletion happened.</td>
     </tr>
     <tr>
-      <td>App store purchase records</td>
-      <td>Your app store (Google Play or the Apple App Store) keeps its
-        own record of your purchases under its policies. Refunds and
-        receipts are handled through that store.</td>
+      <td>Store purchase codes</td>
+      <td>A one-way code for each one-time Google Play or App Store
+        purchase on the account, with no link to you or the account, so
+        the same purchase can't be credited again to a new account.</td>
+    </tr>
+    <tr>
+      <td>Team records</td>
+      <td>Credits you bought for or moved into a team wallet stay with
+        that team, and feedback you left on a teammate's candidate stays
+        in that team's records.</td>
+    </tr>
+    <tr>
+      <td>Support emails</td>
+      <td>Messages you sent to our support inbox stay there.</td>
+    </tr>
+    <tr>
+      <td>Purchase records at the store</td>
+      <td>Google Play, Apple, and Stripe (for website purchases) each keep
+        their own record of your purchases under their own policies.
+        Refunds and receipts are handled through them.</td>
     </tr>
     <tr>
       <td>Backups</td>
@@ -227,7 +278,8 @@
     </tr>
   </table>
 
-  <p>No record we retain can be used to identify you personally.</p>
+  <p>The deletion record and the store purchase codes can't be used to
+  identify you personally.</p>
 
   <h2>Questions?</h2>
   <p>Email <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a>

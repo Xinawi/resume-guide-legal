@@ -36,11 +36,6 @@
     margin:0 auto;
     padding:56px 24px 72px;
   }
-  a.back{
-    color:var(--accent); text-decoration:none; font-size:14px;
-    display:inline-block; margin-bottom:18px;
-  }
-  a.back:hover{ text-decoration:underline; }
   h1{
     font-size:30px; font-weight:800; color:var(--ink);
     margin:0 0 4px; letter-spacing:-0.01em;
@@ -74,6 +69,11 @@
     border-top:1px solid var(--line);
     padding-top:16px;
   }
+  a.back{
+    color:var(--accent); text-decoration:none; font-size:14px;
+    display:inline-block; margin-bottom:18px;
+  }
+  a.back:hover{ text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -81,14 +81,14 @@
   <a class="back" href="index.html">&larr; Back</a>
 
   <h1>Privacy Policy</h1>
-  <p class="effective">Effective: July 19, 2026</p>
+  <p class="effective">Effective: September 24, 2026</p>
 
   <p>This Privacy Policy explains how <strong>Zenawi</strong>
   (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses,
-  stores, shares, and protects information when you use the
-  <strong>Resume Guide</strong> mobile application and the Resume Guide
-  website at <strong>resumeguide.ai</strong> (together, the &ldquo;App&rdquo;),
-  including its job-seeker features and the
+  stores, shares, and protects information when you use
+  <strong>Resume Guide</strong>, including the Android app, the iPhone
+  app, and the Resume Guide website at resumeguide.ai (together, the
+  &ldquo;App&rdquo;), with its job-seeker features and the
   <strong>Screen &amp; Interview</strong> recruiting workspace. By using
   the App you agree to this Policy.</p>
 
@@ -97,19 +97,23 @@
   <h3>1.1 Information you give us</h3>
   <ul>
     <li><strong>Account information</strong> - your email address and
-      display name (and Google account profile information if you sign
-      in with Google), used to sign you in and identify your account.</li>
+      display name, used to sign you in and identify your account. If
+      you sign in with Google, this includes your Google account profile
+      information. If you use Sign in with Apple (in the iPhone app or on
+      the website), Apple shares your name and email address; if you
+      choose Hide My Email, the address is a private relay address from
+      Apple that forwards to your real one.</li>
     <li><strong>Resume and career content</strong> - the information you
       type or import into the App: your name, contact details, work
       history, education, skills, certifications, and projects; cover
       letters; saved job descriptions; Career Toolkit inputs and the
       documents it generates; and your Mock Interview answers.</li>
-    <li><strong>Profile photo</strong> - in the mobile App, a custom
-      profile photo is stored on your device only and is not uploaded to
-      our servers. If you sign in with Google, the App can display your
-      Google account photo. On the website, a photo you add to a resume is
-      sent to our servers so we can render it into your PDF, and is stored
-      with that resume until you delete the resume or your account.</li>
+    <li><strong>Photos</strong> - if you pick a custom profile photo
+      for your account in the Android or iPhone app, it is stored on your
+      device only and is not uploaded to our servers. If you sign in with
+      Google, the App can display your Google account photo. A photo you
+      add to a resume design is different: it is saved with that resume
+      so it can appear on the resume and in its downloads.</li>
     <li><strong>Candidate data (Screen &amp; Interview)</strong> - if you
       use the recruiting workspace, the candidate resumes you upload or
       paste, candidate names and contact details, fit scores and AI
@@ -138,14 +142,16 @@
       service reliable.</li>
     <li><strong>Push notification tokens</strong> - if you allow
       notifications, a device push token (Firebase Cloud Messaging) so
-      we can tell you when a background task finishes.</li>
-    <li><strong>Purchase information</strong> - in the mobile App, your
-      app store (Google Play or the Apple App Store, depending on your
-      device) sends us a receipt confirming the product you bought and
-      whether it is valid. On the website, payments are processed by
-      Stripe, which sends us a confirmation of the product, the amount,
-      and a customer reference so we can grant what you bought and manage
-      your subscription. In both cases we do not see or store your payment
+      we can tell you when a background task finishes or when we send
+      you a message.</li>
+    <li><strong>Purchase information</strong> - in the Android app,
+      Google Play sends us a receipt token confirming the product you
+      bought and whether it is valid; in the iPhone app, Apple confirms
+      the purchase to us through its App Store Server API; on the Resume
+      Guide website (resumeguide.ai), Stripe takes the payment and
+      confirms it to us. For website purchases we give Stripe your
+      account email address (so it can fill in the checkout and send your
+      receipt) and your account ID. We do not see or store your payment
       card details.</li>
     <li><strong>Diagnostics</strong> - crash reports via Firebase
       Crashlytics and, if enabled, error reports via a monitoring
@@ -170,7 +176,7 @@
       interviews, credits, and activity to the teammates you invite,
       according to their roles.</li>
     <li>To verify purchases and grant the credits you bought through
-      Google Play or the Apple App Store.</li>
+      Google Play, the App Store, or the Resume Guide website.</li>
     <li>To send transactional email (verification links, password
       resets, team invitations) and optional push notifications.</li>
     <li>To diagnose problems, enforce our Terms, prevent abuse, and
@@ -190,8 +196,10 @@
   returned to the App.</p>
   <p>We use Anthropic under its commercial API terms. As of the effective
   date, API inputs and outputs are not used to train Anthropic&rsquo;s
-  public models. Content is only sent when you actively use a generation
-  feature. Please do not paste sensitive information (such as government
+  public models. Content is only sent when you use one of these
+  features, including the suggestions shown when you open a resume and,
+  in Screen &amp; Interview, reading a candidate&rsquo;s name from an
+  uploaded resume when it can&rsquo;t be found otherwise. Please do not paste sensitive information (such as government
   identifiers or financial account numbers) into resume, job description,
   or candidate fields; the App does not need it and we do not want it.</p>
   <p>The App&rsquo;s screening prompts instruct the AI not to extract or
@@ -203,10 +211,13 @@
 
   <h2>4. Where data is stored and who can see it</h2>
   <p>Your data is stored with established cloud providers. Account,
-  billing, and credit records live in a managed PostgreSQL database used
-  by our application server (hosted on Render, a US-based cloud
-  platform). Document content and uploaded files (for example resume
-  text and candidate resume files) are stored in Cloudflare R2, an
+  billing, and credit records, and some document data (such as interview
+  practice questions and answers, job posting text, candidate names,
+  contact details and notes, free Enhance reports, and temporary copies
+  of text while it is being processed), live in a managed PostgreSQL
+  database used by our application server (hosted on Render, a US-based
+  cloud platform). Most document content and uploaded files (for example
+  resume text and candidate resume files) are stored in Cloudflare R2, an
   S3-compatible object storage service provided by Cloudflare, Inc. All
   traffic between the App, our servers, and our storage uses TLS
   encryption in transit, and access to stored data is strictly
@@ -245,21 +256,34 @@
   <p>We share the minimum information necessary with the following
   service providers, who are bound to handle it only as we instruct:</p>
   <ul>
-    <li><strong>Google Play Billing / Apple App Store</strong> - to
-      verify purchases and subscriptions and grant credits.</li>
-    <li><strong>Stripe</strong> - payment processing for purchases and
-      subscriptions made on the website. Stripe handles your card details;
-      we receive only a confirmation and a customer reference.</li>
+    <li><strong>Google Play Billing</strong> - to verify purchases and
+      subscriptions made in the Android app and grant credits.</li>
+    <li><strong>Apple</strong> - Sign in with Apple, if you choose it,
+      and the App Store, to verify purchases and subscriptions made in
+      the iPhone app and grant credits.</li>
+    <li><strong>Stripe</strong> - to take payments on the Resume Guide
+      website: your account email address and account ID, what you
+      bought, and the payment confirmation (and your billing address
+      when sales tax applies). Your card details go to Stripe only.</li>
     <li><strong>Google Firebase</strong> - authentication (sign-in),
-      push notifications (Cloud Messaging), and crash reporting
-      (Crashlytics).</li>
+      push notifications (Cloud Messaging), crash reporting
+      (Crashlytics), and app and browser verification (App Check, which
+      uses Google reCAPTCHA on the website).</li>
     <li><strong>Anthropic</strong> - AI content generation as described
       in Section 3.</li>
     <li><strong>Render and our managed database provider</strong> - to
       host the application server and the account database.</li>
-    <li><strong>Cloudflare</strong> - the CAPTCHA shown to free
-      accounts, and Cloudflare R2 object storage, where document content
-      and uploaded files are stored.</li>
+    <li><strong>Cloudflare</strong> - hosts and delivers the website,
+      provides the CAPTCHA shown to free accounts, and provides Cloudflare
+      R2 object storage, where most document content and uploaded files
+      are stored.</li>
+    <li><strong>Google Fonts</strong> - some website pages load their
+      fonts from Google, which receives your IP address and browser
+      details when the page loads.</li>
+    <li><strong>jsDelivr</strong> - when the free Resume Checker on the
+      website reads a scanned PDF, it downloads its text-recognition
+      files from this public network. Your resume stays in your
+      browser.</li>
     <li><strong>Resend</strong> - to send transactional email such as
       verification links, password resets, and team invitations.</li>
     <li><strong>Sentry</strong> (if enabled) - error monitoring,
@@ -274,25 +298,40 @@
     <li><strong>Active accounts.</strong> We keep your documents and
       account data for as long as your account is active.</li>
     <li><strong>Deleted items.</strong> Resumes, cover letters, job
-      descriptions, match results, and Screen &amp; Interview items you
-      delete go to the Recycle Bin for 30 days, where you can restore
-      them or delete them permanently. After 30 days they are
-      permanently removed automatically.</li>
+      descriptions, match results, Career Toolkit drafts, and
+      Screen &amp; Interview jobs and candidates you delete go to the
+      Recycle Bin for 30 days, where you can restore them or delete them
+      permanently. After 30 days they are permanently removed
+      automatically. Screen &amp; Interview interviews you delete are
+      permanently removed after 30 days too.</li>
     <li><strong>Housekeeping records.</strong> The team activity log
       keeps 30 days of entries. Finished background-job records are
       cleaned up after about 30 days.</li>
-    <li><strong>Credits.</strong> Pack credits expire 4 months after
-      purchase. Purchase and credit records are kept while your account
-      is active.</li>
+    <li><strong>Credits.</strong> Pack credits bought in the Android
+      app or on the website expire 4 months after purchase; credits
+      bought in the iPhone app do not expire. Purchase and credit records
+      are kept while your account is active.</li>
     <li><strong>Account deletion.</strong> When you delete your account
       (see Section 8), your data is deleted immediately and permanently:
       profile, documents, candidate data, uploads, favorites, purchase
-      records, credit history, and security logs. We keep
-      only an anonymized deletion record (a one-way hash of the account
-      id, the email domain, and item counts, with no name or email
-      address) to prove the deletion happened and to prevent abuse.
-      Your app store (Google Play or the Apple App Store) keeps its own
-      record of your purchases under its policies. Residual copies in our infrastructure
+      records, credit history, and security logs. If our file storage
+      can&rsquo;t be reached at that moment, your stored files are removed
+      by our daily cleanup once it is back. If you signed in with Apple, we also ask
+      Apple to end Resume Guide&rsquo;s access to your Apple Account. A
+      subscription bought on the website is cancelled; one bought in the
+      Android or iPhone app must be cancelled in that store. Some things
+      stay: credits you bought for or moved into a team wallet stay with
+      that team, feedback you left on a teammate&rsquo;s candidate stays
+      in that team&rsquo;s records, and messages you sent to our support
+      inbox stay there. We keep only an anonymized deletion record (a
+      one-way hash of the account ID, the email domain, the sign-in
+      method, who asked for the deletion, and counts of deleted resumes
+      and cover letters, with no name or email address) to prove the
+      deletion happened, and a one-way code for each one-time Google Play
+      or App Store purchase on the account, with no link to you or the
+      account, so the same purchase can&rsquo;t be credited again to a
+      new account. Google Play, Apple, and Stripe each keep their
+      own record of your purchases under their own policies. Residual copies in our infrastructure
       providers&rsquo; rolling backups age out on a schedule measured in
       days, typically within 30 days.</li>
   </ul>
@@ -304,11 +343,13 @@
     <li><strong>Delete items</strong> - delete any resume, cover letter,
       job description, match result, or candidate in the App (Recycle
       Bin, 30 days, with restore).</li>
-    <li><strong>Delete your account</strong> - in the App, go to
-      <strong>More &rarr; Account &rarr; Delete my account</strong>. You
-      will re-enter your password (or sign in with Google again) to
-      confirm, and deletion is immediate and permanent. You can also
-      email <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a>
+    <li><strong>Delete your account</strong> - in the Android or iPhone
+      app, go to <strong>More &rarr; Account &rarr; Delete my
+      account</strong>; on the website, open your Account page and choose
+      <strong>Delete my account</strong>. You will re-enter your password
+      (or sign in with Google or Apple again) to confirm, and deletion is
+      immediate and permanent. You can also email
+      <a href="mailto:support@resumeguide.ai">support@resumeguide.ai</a>
       with the subject &ldquo;Delete my account.&rdquo;</li>
     <li><strong>Export</strong> - download your resumes and reports as
       PDF or Word files from the App. For a copy of other data we hold
