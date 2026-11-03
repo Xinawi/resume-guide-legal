@@ -131,10 +131,10 @@
   <ul>
     <li><strong>Device and usage data</strong> - app version and device
       operating system (attached to feedback you send), and records of
-      key account events such as a resume being created or exported. We
-      do not collect advertising identifiers and we do not use advertising
-      SDKs. The Android and iPhone apps do not use third-party analytics;
-      the website uses HeyCatch analytics, described below.</li>
+      key account events such as a resume being created or exported. The
+      Android and iPhone apps do not collect advertising identifiers, do not
+      use advertising SDKs and do not use third-party analytics; the website
+      uses HeyCatch analytics and the Meta Pixel, described below.</li>
     <li><strong>Security and abuse-prevention logs</strong> - when you
       use a generation feature, we record the action together with your
       IP address, device user-agent string, and processing metadata
@@ -191,14 +191,35 @@
       <a href="https://resumeguide.ai/#analytics-choices">resumeguide.ai/#analytics-choices</a>),
       and HeyCatch stays off when your browser sends Do Not Track or Global
       Privacy Control. The Android and iPhone apps do not use HeyCatch.</li>
+    <li id="meta-pixel"><strong>Ad measurement with the Meta Pixel (website
+      only)</strong> - we advertise Resume Guide on Facebook and Instagram.
+      To learn which of our ads bring visitors and sales, the website loads
+      the <strong>Meta Pixel</strong> on public pages only (such as the home
+      page, guides, templates and pricing), never on pages that show your own
+      content. It tells Meta which public page you visited and sets Meta's
+      cookies (_fbp, and _fbc if you came from one of our ads) in your
+      browser. If you then buy on the website, our server tells Meta the
+      order number, amount and product, with those two cookie values and your
+      browser's user agent, so Meta can match the sale to the ad. We do not
+      give Meta your name, email address or IP address, and Meta's automatic
+      collection of buttons and page details is switched off. The Meta Pixel
+      follows the same choice as analytics: visitors in Europe are asked
+      first, &ldquo;Analytics choices&rdquo; turns it on or off at any time,
+      and it stays off when your browser sends Do Not Track or Global Privacy
+      Control. Meta uses this information under its own
+      <a href="https://www.facebook.com/privacy/policy/">Privacy Policy</a>.
+      The Android and iPhone apps do not use the Meta Pixel.</li>
     <li><strong>Diagnostics</strong> - crash reports via Firebase
       Crashlytics and, if enabled, error reports via a monitoring
       service configured not to include personal data.</li>
   </ul>
 
   <div class="note">
-    The App does not contain third-party advertising and does not sell
-    your personal information.
+    The App does not show third-party advertising and we do not sell your
+    personal information. The website shares limited information with Meta
+    to measure our own ads (see &ldquo;Ad measurement with the Meta
+    Pixel&rdquo; above); you can turn this off with &ldquo;Analytics
+    choices&rdquo; or with Global Privacy Control.
   </div>
 
   <h2>2. How we use your information</h2>
@@ -316,6 +337,11 @@
       name or email address. HeyCatch
       stores this data with PostHog in the United States and uses an AI
       service to summarize it for us.</li>
+    <li><strong>Meta (Facebook and Instagram)</strong> - to measure our own
+      ads, as described in Section 1.2: the public pages visited, Meta's
+      cookies (_fbp and _fbc), and for a website purchase the order number,
+      amount, product and your browser's user agent. No name, email address
+      or IP address from us.</li>
     <li><strong>Google Firebase</strong> - authentication (sign-in),
       push notifications (Cloud Messaging), crash reporting
       (Crashlytics), and app and browser verification (App Check, which
@@ -416,8 +442,9 @@
     <li><strong>Website analytics</strong> - use &ldquo;Analytics
       choices&rdquo; (at the bottom of the website's pages that have a
       footer, and in your account menu when you are signed in) to allow or
-      stop HeyCatch analytics in your browser at any time. Turning on Do Not
-      Track or Global Privacy Control in your browser keeps it off.</li>
+      stop HeyCatch analytics and the Meta Pixel in your browser at any time.
+      Turning on Do Not Track or Global Privacy Control in your browser keeps
+      them off.</li>
     <li><strong>Withdraw consent</strong> - stop using the App or delete
       your account at any time.</li>
   </ul>
